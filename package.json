@@ -1,7 +1,7 @@
 {
-  "name": "@onwidget/astrowind",
-  "version": "1.0.0-beta.62",
-  "description": "AstroWind: A free template using Astro 6 and Tailwind CSS v4. Astro starter theme.",
+  "name": "monkeyjobs-web",
+  "version": "0.1.0",
+  "description": "Sitio web oficial de MonkeyJobs S.A.S. — casa de desarrollo de software en Bogotá.",
   "type": "module",
   "private": true,
   "engines": {
@@ -22,7 +22,6 @@
     "fix:prettier": "prettier -w ."
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "@emailjs/browser": "^4.4.1",
     "@fontsource-variable/inter": "^5.2.8",
@@ -54,10 +53,8 @@
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.6.0",
     "js-yaml": "^4.1.0",
-    "mdast-util-to-string": "^4.0.0",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
-    "reading-time": "^1.5.0",
     "sharp": "0.34.5",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.0",

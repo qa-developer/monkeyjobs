@@ -7,10 +7,6 @@ import Features2 from '~/components/widgets/Features2.astro';
 const metadata = {
   title: 'Contacto',
 };
-
-const EMAILJS_SERVICE_ID = 'service_z9qrxbo';
-const EMAILJS_TEMPLATE_ID = 'template_6so7rzu';
-const EMAILJS_PUBLIC_KEY = 'BBUTs4-kl9ApFJADN';
 ---
 
 <Layout metadata={metadata}>
@@ -248,8 +244,8 @@ const EMAILJS_PUBLIC_KEY = 'BBUTs4-kl9ApFJADN';
       } else {
         showStatus('error', `Error al enviar (código ${response.status}). Intenta nuevamente.`);
       }
-    } catch (error: any) {
-      const code = error?.status as number | undefined;
+    } catch (error: unknown) {
+      const code = (error as { status?: number } | undefined)?.status;
       let msg = 'Error al enviar el mensaje. Intenta nuevamente o contáctanos por WhatsApp.';
 
       if (code === 400) msg = 'Error de configuración del servicio. Reporta el problema por WhatsApp.';
