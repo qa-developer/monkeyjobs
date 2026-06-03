@@ -1,0 +1,57 @@
+---
+import spiralImg from '~/assets/images/spiral.svg';
+
+export interface Props {
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'center';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  opacity?: number;
+  flip?: boolean;
+  rotate?: number;
+  class?: string;
+}
+
+const {
+  position = 'top-right',
+  size = 'lg',
+  opacity = 0.55,
+  flip = false,
+  rotate = 0,
+  class: extraClass = '',
+} = Astro.props;
+
+const sizeMap = {
+  sm: 'w-[260px] md:w-[360px]',
+  md: 'w-[380px] md:w-[520px]',
+  lg: 'w-[520px] md:w-[720px]',
+  xl: 'w-[640px] md:w-[900px] lg:w-[1100px]',
+};
+
+const positionMap = {
+  'top-right': '-top-10 -right-24 md:-top-16 md:-right-32',
+  'top-left': '-top-10 -left-24 md:-top-16 md:-left-32',
+  'bottom-right': '-bottom-10 -right-24 md:-bottom-20 md:-right-32',
+  'bottom-left': '-bottom-10 -left-24 md:-bottom-20 md:-left-32',
+  center: 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+};
+
+const transform = `${flip ? 'scaleX(-1) ' : ''}${rotate ? `rotate(${rotate}deg)` : ''}`.trim();
+---
+
+<img
+  src={spiralImg.src}
+  alt=""
+  aria-hidden="true"
+  loading="lazy"
+  decoding="async"
+  class:list={[
+    'pointer-events-none select-none absolute',
+    sizeMap[size],
+    positionMap[position],
+    extraClass,
+  ]}
+  style={{
+    opacity,
+    transform: transform || undefined,
+    maxWidth: 'none',
+  }}
+/>

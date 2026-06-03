@@ -22,3 +22,11 @@ pnpm-debug.log*
 pnpm-lock.yaml
 
 .astro
+
+# IDE / local agent config
+.claude/
+
+# Binarios / instaladores
+*.exe
+*.msi
+*.dmg

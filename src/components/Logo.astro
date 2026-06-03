@@ -1,9 +1,23 @@
 ---
+import { Image } from 'astro:assets';
 import { SITE } from 'astrowind:config';
+import logoImage from '~/assets/images/logo_monkeyjobs.png';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
+<span class="flex items-center gap-2">
+  <Image
+    src={logoImage}
+    alt={`${SITE?.name} logo`}
+    width={72}
+    height={72}
+    densities={[1, 2]}
+    loading="eager"
+    decoding="async"
+    class="w-9 h-9 md:w-10 md:h-10 rounded-lg shadow-sm"
+  />
+  <span
+    class="self-center text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+  >
+    {SITE?.name}
+  </span>
 </span>

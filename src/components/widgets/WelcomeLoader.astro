@@ -1,0 +1,128 @@
+---
+const HIDE_AFTER_MS = 2400;
+const DESTROY_AFTER_MS = 3000;
+---
+
+<div
+  id="mj-preloader"
+  class="mj-preloader"
+  role="status"
+  aria-live="polite"
+  aria-label="Cargando MonkeyJobs"
+  data-hide-after={HIDE_AFTER_MS}
+  data-destroy-after={DESTROY_AFTER_MS}
+>
+  <div class="mj-preloader__spinner" aria-hidden="true">
+    <div class="mj-preloader__bounce mj-preloader__bounce--one"></div>
+    <div class="mj-preloader__bounce mj-preloader__bounce--two"></div>
+    <div class="mj-preloader__bounce mj-preloader__bounce--three"></div>
+  </div>
+  <span class="mj-preloader__sr">Cargando…</span>
+</div>
+
+<style>
+  .mj-preloader {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #03163b;
+    z-index: 99999;
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 0.5s ease-out,
+      visibility 0s 0.5s;
+  }
+
+  .mj-preloader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .mj-preloader__spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+  }
+
+  .mj-preloader__bounce {
+    will-change: transform;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    background: #03163b;
+    display: inline-block;
+    animation: mj-preloader-bounces 1s ease-in-out infinite alternate;
+    transform-origin: 50% 50%;
+  }
+
+  .mj-preloader__bounce--one {
+    margin-right: 15px;
+  }
+
+  .mj-preloader__bounce--two {
+    margin-right: 15px;
+    animation-delay: 0.4s;
+  }
+
+  .mj-preloader__bounce--three {
+    animation-delay: 0.8s;
+  }
+
+  .mj-preloader__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @keyframes mj-preloader-bounces {
+    0% {
+      transform: scale(1);
+      background: #e5eaf1;
+    }
+    50% {
+      background: #e5eaf1;
+    }
+    100% {
+      transform: scale(0.2);
+      background: #e5eaf1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mj-preloader__bounce {
+      animation-duration: 2s;
+    }
+  }
+</style>
+
+<script>
+  function hidePreloader(immediate = false) {
+    const loader = document.getElementById('mj-preloader');
+    if (!loader) return;
+    if (immediate || sessionStorage.getItem('mj-preloader-shown') === '1') {
+      loader.classList.add('is-hidden');
+      return;
+    }
+    const destroyAfter = Number(loader.dataset.destroyAfter ?? 2400);
+    window.setTimeout(() => {
+      loader.classList.add('is-hidden');
+      sessionStorage.setItem('mj-preloader-shown', '1');
+    }, destroyAfter);
+  }
+
+  hidePreloader();
+
+  document.addEventListener('astro:after-swap', () => hidePreloader(true));
+  document.addEventListener('astro:page-load', () => hidePreloader(true));
+</script>

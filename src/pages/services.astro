@@ -1,4 +1,5 @@
 ---
+import SpiralDecoration from '~/components/common/SpiralDecoration.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features2 from '~/components/widgets/Features2.astro';
@@ -7,7 +8,7 @@ import Testimonials from '~/components/widgets/Testimonials.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Services',
+  title: 'Servicios',
 };
 ---
 
@@ -15,74 +16,81 @@ const metadata = {
   <!-- Hero Widget ******************* -->
 
   <Hero
-    tagline="Services"
-    title="Elevate your projects with our stunning templates"
-    subtitle="Explore our meticulously crafted templates tailored to various industries and purposes. From captivating presentations to functional website designs, we offer the tools you need to succeed."
-    actions={[{ variant: 'primary', target: '_blank', text: 'Start exploring', href: '/' }]}
+    tagline="Servicios"
+    title="Software a la medida para tu negocio"
+    subtitle="Diseñamos, construimos y mantenemos productos digitales con criterio técnico y enfoque de negocio. Desde plataformas web hasta agentes inteligentes, te acompañamos en cada etapa."
+    actions={[{ variant: 'primary', text: 'Cotizar proyecto', href: '/contact' }]}
     image={{
       src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-      alt: 'AstroWind Hero Image',
+      alt: 'Servicios MonkeyJobs',
     }}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 overflow-hidden">
+        <SpiralDecoration position="top-right" size="xl" opacity={0.45} />
+        <SpiralDecoration position="bottom-left" size="lg" opacity={0.25} flip rotate={180} />
+      </div>
+    </Fragment>
+  </Hero>
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="Explore our diverse templates"
-    subtitle="Discover our selection below to streamline and elevate your projects."
+    title="Nuestras líneas de servicio"
+    subtitle="Soluciones end-to-end para cada momento de tu producto."
     columns={3}
     items={[
       {
-        title: 'Educational',
+        title: 'Desarrollo web',
         description:
-          'By harmonizing instructional design and visual appeal, templates streamline content creation for varied materials, expediting development and cultivating engaging educational spaces.',
-        icon: 'tabler:school',
+          'Sitios y aplicaciones web con Angular, React, Astro y Next. Performance, SEO técnico y SSR. Diseño responsive y accesible.',
+        icon: 'tabler:world-code',
       },
       {
-        title: 'Interior Design',
+        title: 'Apps móviles',
         description:
-          'Crafting functional, visually appealing spaces for residential and commercial use. Templates emphasize layout, colors, and furniture setups, offering a versatile toolkit for your design vision.',
-        icon: 'tabler:home-star',
+          'iOS y Android nativo, Flutter, React Native. Publicación en stores, push notifications, analytics y deep linking.',
+        icon: 'tabler:device-mobile',
       },
       {
-        title: 'Photography',
-        description: `Empowering photographers, our templates facilitate captivating storytelling. With a keen focus on layout, galleries, and typography, they cater to both professionals and enthusiasts.`,
-        icon: 'tabler:photo',
+        title: 'Inteligencia Artificial',
+        description: `Integración de LLMs, agentes autónomos, RAG y automatización de procesos. Casos reales en producción.`,
+        icon: 'tabler:robot',
+      },
+      {
+        title: 'Sistemas empresariales',
+        description:
+          'ERPs a la medida, CRMs, integraciones con sistemas legacy y middleware confiable para tus operaciones.',
+        icon: 'tabler:server-bolt',
       },
       {
         title: 'E-commerce',
         description:
-          'Developing engaging online stores, our E-commerce templates ensure a dynamic presence to effectively showcase products. Ideal for startups or revamps.',
+          'Tiendas online performantes, integraciones con pasarelas de pago, logística y plataformas de marketing.',
         icon: 'tabler:shopping-cart',
       },
       {
-        title: 'Blog',
+        title: 'Backend y APIs',
         description:
-          'With attention to typography, these templates empower effective content presentation for writers at any stage, ensuring visually engaging and user-friendly blogs.',
-        icon: 'tabler:article',
+          'APIs REST, GraphQL, microservicios, event-driven. Node, .NET, Python y Go en arquitecturas escalables.',
+        icon: 'tabler:api',
       },
       {
-        title: 'Business',
+        title: 'DevOps y Cloud',
         description:
-          'Providing polished options for effective visual communication, these templates empower both startups and established companies for a professional brand presence.',
-        icon: 'tabler:building-store',
+          'AWS, Azure, GCP. CI/CD, infra como código, monitoreo, observabilidad y optimización de costos.',
+        icon: 'tabler:cloud-cog',
       },
       {
-        title: 'Branding',
-        description:
-          'Offering pre-designed elements for a consistent brand identity, including logos and marketing materials. Ideal for new ventures or revamps.',
-        icon: 'tabler:arrow-big-up-lines',
+        title: 'Consultoría técnica',
+        description: `Auditoría de código, roadmap, arquitectura y acompañamiento estratégico para tu equipo o startup.`,
+        icon: 'tabler:bulb',
       },
       {
-        title: 'Medical',
-        description: `From presentations to patient forms, these tools enhance communication effectiveness for healthcare professionals. Ideal for medical practices and research pursuits.`,
-        icon: 'tabler:vaccine',
-      },
-      {
-        title: 'Fashion Design',
+        title: 'Staff augmentation',
         description:
-          'With attention to detail, customization, and contemporary design, they empower designers to showcase ideas cohesively. Ideal for all levels of designers.',
-        icon: 'tabler:tie',
+          'Perfiles seniors integrados a tu equipo en sprints reales. Sin intermediarios, sin sorpresas en facturación.',
+        icon: 'tabler:users-group',
       },
     ]}
   />
@@ -93,37 +101,42 @@ const metadata = {
     isReversed
     items={[
       {
-        title: 'High-Quality Designs',
+        title: 'Calidad como contrato',
         description:
-          'Our templates feature top-tier designs that ensure a professional and polished appearance for your projects.',
+          'Code review, testing automatizado, linters y revisiones de seguridad en cada PR. Sin atajos, sin "después lo arreglamos".',
         icon: 'tabler:wand',
       },
       {
-        title: 'Customization Tools',
+        title: 'Personalización total',
         description:
-          'Tailor each template to your unique needs with user-friendly customization tools that let you personalize colors, fonts, and content.',
+          'Adaptamos cada solución a tu marca, procesos y objetivos. No vendemos plantillas: construimos productos únicos.',
         icon: 'tabler:settings',
       },
       {
-        title: 'Pre-Designed Elements',
+        title: 'Componentes reutilizables',
         description:
-          'Save time and effort with our ready-to-use elements, including graphics, icons, and layouts that enhance the visual appeal of your creations.',
+          'Design systems, librerías internas y boilerplates propios que aceleran sin sacrificar calidad.',
         icon: 'tabler:presentation',
       },
       {
-        title: 'Preview and Mockup Views',
+        title: 'Demos y prototipos navegables',
         description:
-          'Visualize the final outcome before making any changes using our preview and mockup views, ensuring your projects meet your expectations.',
+          'Validamos contigo antes de construir. Prototipos interactivos para alinear visión y reducir riesgo.',
         icon: 'tabler:carousel-horizontal',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
-      alt: 'Features Image',
+      src: '~/assets/images/caracteristicas_claves.png',
+      alt: 'MonkeyJobs — Características clave del servicio',
+      width: 1577,
+      height: 1269,
+      widths: [600, 900, 1200, 1577],
+      sizes: '(max-width: 768px) 100vw, 600px',
+      class: 'mx-auto w-full',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Main Features</h3>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Características clave</h3>
     </Fragment>
   </Content>
 
@@ -133,77 +146,76 @@ const metadata = {
     isAfterContent
     items={[
       {
-        title: 'Time Savings',
+        title: 'Time-to-market real',
         description:
-          'Streamline your workflow, enabling you to create stunning materials efficiently and allocate more time to your core tasks.',
+          'Procesos optimizados y stack moderno para acortar el tiempo entre la idea y la versión en producción.',
         icon: 'tabler:clock',
       },
       {
-        title: 'Professional Appearance',
+        title: 'Profesionalismo visible',
         description:
-          'Elevate your projects with the polished and sophisticated look that our templates provide, making a lasting impression on your audience.',
+          'Documentación, repositorios bien estructurados y comunicación clara. Cada entregable se siente como senior.',
         icon: 'tabler:school',
       },
       {
-        title: 'Cost-Efficiency',
+        title: 'Costos predecibles',
         description:
-          'Benefit from cost savings by avoiding the need for custom design work, as our templates offer professional-grade designs at a fraction of the cost.',
+          'Modelos de inversión claros: proyecto cerrado, bolsas de horas, equipo dedicado. Tú eliges el que mejor se ajuste.',
         icon: 'tabler:coin',
       },
       {
-        title: 'Instant Download',
+        title: 'Entregas en sprints',
         description:
-          'Enjoy immediate access to your chosen templates upon purchase, enabling you to begin working on your projects without delay.',
+          'Avances visibles cada 2 semanas, no al final del proyecto. Feedback temprano = producto mejor.',
         icon: 'tabler:file-download',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-      alt: 'Benefits Image',
+      alt: 'Beneficios de trabajar con MonkeyJobs',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Benefits</h3>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Beneficios</h3>
     </Fragment>
   </Content>
 
   <!-- Testimonials Widget *********** -->
 
   <Testimonials
-    title="Words from real customers"
+    title="Lo que dicen nuestros clientes"
     testimonials={[
       {
-        testimonial: `The designs are not only visually appealing but also highly professional. The templates have saved me a significant amount of time while helping me make a lasting impression on my clients.`,
+        testimonial: `El equipo de MonkeyJobs no solo cumplió con los tiempos, sino que nos propuso mejoras de producto que no habíamos considerado. Comunicación clara y entregables sólidos.`,
         name: 'Emily Kennedy',
-        job: 'Front-end developer',
+        job: 'Product Manager',
         image: {
           src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80',
-          alt: 'Emily Kennedy Image',
+          alt: 'Emily Kennedy',
         },
       },
       {
-        testimonial: `It beautifully showcases my work, with its clean and elegant design that lets my photographs shine. Customization was a breeze, even for a non-tech person like me. The result is a professional and immersive portfolio that's garnered numerous compliments.`,
+        testimonial: `Mi catálogo en línea quedó hermoso y rapidísimo. El proceso fue fluido, sin tecnicismos innecesarios, y siempre supe en qué iba mi proyecto.`,
         name: 'Sarah Hansen',
-        job: 'Photographer',
+        job: 'Fundadora de e-commerce',
         image: {
           src: 'https://images.unsplash.com/photo-1561406636-b80293969660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-          alt: 'Sarah Hansen Image',
+          alt: 'Sarah Hansen',
         },
       },
       {
-        testimonial: `I discovered these templates and I'm impressed by their variety and quality. They've helped me establish a consistent brand image across my marketing and social platforms, elevating my business's overall appearance.`,
+        testimonial: `Trabajamos con MonkeyJobs en un proyecto de IA aplicada y los resultados superaron lo que esperábamos. Equipo técnico real, no comerciales pintados de developer.`,
         name: 'Mark Wilkinson',
-        job: 'Small business owner',
+        job: 'CTO en pyme tecnológica',
         image: {
           src: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=824&q=80',
-          alt: 'Mark Wilkinson Image',
+          alt: 'Mark Wilkinson',
         },
       },
     ]}
     callToAction={{
-      target: '_blank',
-      text: 'More testimonials...',
-      href: 'https://github.com/arthelokyo/astrowind',
+      text: 'Habla con nosotros',
+      href: '/contact',
       icon: 'tabler:chevron-right',
     }}
   />
@@ -214,11 +226,18 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Start exploring',
-        href: '/',
+        text: 'Cotiza tu proyecto',
+        href: '/contact',
       },
     ]}
-    title="Dive into our template collection"
-    subtitle="Whether you're in business, design, or education, our templates are here to elevate your projects."
-  />
+    title="¿Tienes un proyecto en mente?"
+    subtitle="Cuéntanos qué necesitas. Conversamos sin compromiso y te entregamos claridad técnica y de negocio."
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 overflow-hidden">
+        <SpiralDecoration position="top-right" size="lg" opacity={0.32} />
+        <SpiralDecoration position="bottom-left" size="lg" opacity={0.32} flip rotate={180} />
+      </div>
+    </Fragment>
+  </CallToAction>
 </Layout>

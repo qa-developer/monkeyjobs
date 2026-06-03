@@ -1,182 +1,105 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
     {
-      text: 'Homes',
-      links: [
-        {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
-        },
-        {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
-        },
-        {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app'),
-        },
-        {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
-        },
-      ],
+      text: 'Inicio',
+      href: getPermalink('/'),
     },
     {
-      text: 'Pages',
+      text: 'Servicios',
       links: [
         {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
+          text: 'Desarrollo web',
+          href: getPermalink('/services#web'),
         },
         {
-          text: 'Services',
+          text: 'Apps móviles',
+          href: getPermalink('/services#mobile'),
+        },
+        {
+          text: 'Inteligencia Artificial',
+          href: getPermalink('/services#ai'),
+        },
+        {
+          text: 'Sistemas empresariales',
+          href: getPermalink('/services#systems'),
+        },
+        {
+          text: 'Consultoría y arquitectura',
+          href: getPermalink('/services#consulting'),
+        },
+        {
+          text: 'Ver todos los servicios',
           href: getPermalink('/services'),
         },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
-        },
-        {
-          text: 'About us',
-          href: getPermalink('/about'),
-        },
-        {
-          text: 'Contact',
-          href: getPermalink('/contact'),
-        },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
-        },
       ],
     },
     {
-      text: 'Landing',
-      links: [
-        {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
-        },
-        {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
-        },
-        {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
-        },
-        {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
-        },
-        {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
-        },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
-        },
-      ],
+      text: 'Nosotros',
+      href: getPermalink('/about'),
     },
     {
-      text: 'Blog',
-      links: [
-        {
-          text: 'Blog List',
-          href: getBlogPermalink(),
-        },
-        {
-          text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
-        },
-        {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
-        },
-        {
-          text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
-        },
-        {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
-        },
-      ],
+      text: 'Planes',
+      href: getPermalink('/pricing'),
     },
     {
-      text: 'Widgets',
-      href: '#',
+      text: 'Contacto',
+      href: getPermalink('/contact'),
     },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
+  actions: [{ text: 'Cotizar proyecto', href: getPermalink('/contact'), target: '_self' }],
 };
 
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: 'Servicios',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        { text: 'Desarrollo web', href: getPermalink('/services#web') },
+        { text: 'Apps móviles', href: getPermalink('/services#mobile') },
+        { text: 'Inteligencia Artificial', href: getPermalink('/services#ai') },
+        { text: 'Sistemas empresariales', href: getPermalink('/services#systems') },
+        { text: 'Consultoría', href: getPermalink('/services#consulting') },
       ],
     },
     {
-      title: 'Platform',
+      title: 'Empresa',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
+        { text: 'Sobre nosotros', href: getPermalink('/about') },
+        { text: 'Planes y precios', href: getPermalink('/pricing') },
+        { text: 'Contacto', href: getPermalink('/contact') },
       ],
     },
     {
-      title: 'Support',
+      title: 'Recursos',
       links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
+        { text: 'Casos de éxito', href: '#' },
+        { text: 'Procesos', href: '#' },
+        { text: 'Stack tecnológico', href: '#' },
+        { text: 'Preguntas frecuentes', href: getPermalink('/#faqs') },
       ],
     },
     {
-      title: 'Company',
+      title: 'Legal',
       links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' },
+        { text: 'Términos y condiciones', href: getPermalink('/terms') },
+        { text: 'Política de privacidad', href: getPermalink('/privacy') },
+        { text: 'Aviso legal', href: '#' },
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Términos', href: getPermalink('/terms') },
+    { text: 'Privacidad', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/arthelokyo/astrowind' },
+    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/company/noyecode' },
+    { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/noyecode' },
+    { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/channel/UCew_c8BymxCRLOx8vOQbqhg' },
+    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/573013859952' },
   ],
   footNote: `
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://github.com/arthelokyo"> Arthelokyo</a> · All rights reserved.
+    © ${new Date().getFullYear()} <strong>MonkeyJobs S.A.S.</strong> · Bogotá, Colombia · Todos los derechos reservados.
   `,
 };

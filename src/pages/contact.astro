@@ -1,79 +1,265 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import SpiralDecoration from '~/components/common/SpiralDecoration.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import ContactUs from '~/components/widgets/Contact.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 
 const metadata = {
-  title: 'Contact',
+  title: 'Contacto',
 };
+
+const EMAILJS_SERVICE_ID = 'service_z9qrxbo';
+const EMAILJS_TEMPLATE_ID = 'template_6so7rzu';
+const EMAILJS_PUBLIC_KEY = 'BBUTs4-kl9ApFJADN';
 ---
 
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <HeroText tagline="Contacto" title="Hablemos de tu proyecto">
+    <Fragment slot="bg">
+      <SpiralDecoration position="top-right" size="xl" opacity={0.4} />
+      <SpiralDecoration position="bottom-left" size="lg" opacity={0.22} flip rotate={180} />
+    </Fragment>
+  </HeroText>
 
-  <ContactUs
-    id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
-    inputs={[
-      {
-        type: 'text',
-        name: 'name',
-        label: 'Name',
-      },
-      {
-        type: 'email',
-        name: 'email',
-        label: 'Email',
-      },
-    ]}
-    textarea={{
-      label: 'Message',
-    }}
-    disclaimer={{
-      label:
-        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
-    }}
-    description="Our support team typically responds within 24 business hours."
-  />
+  <!-- Custom Contact Form with EmailJS ******* -->
+
+  <section id="form" class="px-4 sm:px-6 mx-auto max-w-7xl py-12 md:py-16">
+    <div class="mx-auto max-w-3xl text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight dark:text-white">Cuéntanos qué necesitas</h2>
+      <p class="mt-4 text-lg text-muted dark:text-slate-400">
+        Si tu pregunta es general, revisa nuestras FAQs en la home. Si quieres cotizar o conversar sobre un proyecto, déjanos los datos y respondemos en menos de 24 horas hábiles.
+      </p>
+    </div>
+
+    <form
+      id="mj-contact-form"
+      class="flex flex-col max-w-2xl mx-auto rounded-lg backdrop-blur border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 shadow p-4 sm:p-6 lg:p-8 w-full gap-6"
+      novalidate
+    >
+      <div>
+        <label for="name" class="block text-sm font-medium mb-2">Nombre completo *</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="Tu nombre"
+          class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium mb-2">Correo electrónico *</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="tu@correo.com"
+          class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+      </div>
+
+      <div>
+        <label for="phone" class="block text-sm font-medium mb-2">Teléfono</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="+57 300 000 0000"
+          class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+      </div>
+
+      <div>
+        <label for="service" class="block text-sm font-medium mb-2">Servicio de interés *</label>
+        <select
+          id="service"
+          name="service"
+          required
+          class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
+        >
+          <option value="">Selecciona un servicio</option>
+          <option value="Desarrollo web">Desarrollo web</option>
+          <option value="Apps móviles">Apps móviles</option>
+          <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+          <option value="Sistemas empresariales">Sistemas empresariales</option>
+          <option value="E-commerce">E-commerce</option>
+          <option value="Consultoría técnica">Consultoría técnica</option>
+          <option value="Staff augmentation">Staff augmentation</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium mb-2">Cuéntanos sobre tu proyecto *</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          required
+          placeholder="Cuéntanos qué necesitas construir..."
+          class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-primary"
+        ></textarea>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <input
+          id="disclaimer"
+          type="checkbox"
+          required
+          class="mt-1 w-5 h-5 cursor-pointer rounded border border-gray-300 dark:border-gray-700 accent-primary"
+        />
+        <label for="disclaimer" class="cursor-pointer select-none text-sm text-gray-600 dark:text-gray-400">
+          Al enviar este formulario aceptas que MonkeyJobs trate tus datos para responder tu solicitud conforme a la política de privacidad. *
+        </label>
+      </div>
+
+      <!-- Status messages -->
+      <div id="mj-form-status" class="hidden" aria-live="polite"></div>
+
+      <div class="grid">
+        <button
+          type="submit"
+          id="mj-submit-btn"
+          class="inline-flex items-center justify-center gap-2 px-8 py-3 font-bold rounded-full text-white bg-primary hover:bg-secondary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span id="mj-btn-text">Enviar mensaje</span>
+          <svg
+            id="mj-btn-spinner"
+            class="hidden animate-spin w-5 h-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <p class="text-sm text-gray-600 dark:text-gray-400 text-center">
+        Nuestro equipo responde en menos de 24 horas hábiles.
+      </p>
+    </form>
+  </section>
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="We are here to help!"
+    title="Estamos aquí para ayudarte"
     items={[
       {
-        title: 'General support',
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
+        title: 'Atención general',
+        description: `Resolvemos dudas sobre nuestros servicios, procesos, tiempos y cómo trabajamos con clientes nuevos.`,
       },
       {
-        title: 'Contact sales',
+        title: 'Cotización de proyectos',
         description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
+          'Conversación inicial para entender alcance, definir entregables, cronograma e inversión estimada.',
       },
       {
-        title: 'Technical support',
+        title: 'Soporte técnico',
         description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
+          'Si ya eres cliente y necesitas reportar un incidente, ajuste o nueva funcionalidad, escríbenos por aquí.',
       },
       {
-        title: 'Phone',
-        description: '+1 (234) 567-890',
-        icon: 'tabler:headset',
+        title: 'WhatsApp / Teléfono',
+        description: '+57 301 385 9952',
+        icon: 'tabler:brand-whatsapp',
       },
       {
-        title: 'Email',
-        description: 'contact@support.com',
+        title: 'Correo',
+        description: 'javierbr1277@gmail.com',
         icon: 'tabler:mail',
       },
       {
-        title: 'Location',
-        description: '1234 Lorem Ipsum St, 12345, Miami, EEUU',
+        title: 'Ubicación',
+        description: 'Colombia · Trabajamos remoto-first',
         icon: 'tabler:map-pin',
       },
     ]}
   />
 </Layout>
+
+<script>
+  import emailjs from '@emailjs/browser';
+
+  const SERVICE_ID = 'service_z9qrxbo';
+  const TEMPLATE_ID = 'template_6so7rzu';
+  const PUBLIC_KEY = 'BBUTs4-kl9ApFJADN';
+
+  emailjs.init(PUBLIC_KEY);
+
+  const form = document.getElementById('mj-contact-form') as HTMLFormElement | null;
+  const statusEl = document.getElementById('mj-form-status');
+  const submitBtn = document.getElementById('mj-submit-btn') as HTMLButtonElement | null;
+  const btnText = document.getElementById('mj-btn-text');
+  const btnSpinner = document.getElementById('mj-btn-spinner');
+
+  function showStatus(type: 'success' | 'error', message: string) {
+    if (!statusEl) return;
+    statusEl.className =
+      type === 'success'
+        ? 'p-4 rounded-lg bg-green-50 border-l-4 border-green-500 text-green-800'
+        : 'p-4 rounded-lg bg-red-50 border-l-4 border-red-500 text-red-800';
+    statusEl.textContent = message;
+  }
+
+  function setLoading(loading: boolean) {
+    if (!submitBtn || !btnText || !btnSpinner) return;
+    submitBtn.disabled = loading;
+    btnText.textContent = loading ? 'Enviando...' : 'Enviar mensaje';
+    btnSpinner.classList.toggle('hidden', !loading);
+  }
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    setLoading(true);
+
+    const formData = new FormData(form);
+    const templateParams = {
+      to_name: 'MonkeyJobs',
+      from_name: (formData.get('name') as string) || '',
+      from_email: (formData.get('email') as string) || '',
+      phone: (formData.get('phone') as string) || 'No proporcionado',
+      service: (formData.get('service') as string) || '',
+      message: (formData.get('message') as string) || '',
+      reply_to: (formData.get('email') as string) || '',
+    };
+
+    try {
+      const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+
+      if (response.status === 200) {
+        showStatus('success', '¡Mensaje enviado! Nos pondremos en contacto contigo en menos de 24 horas hábiles.');
+        form.reset();
+      } else {
+        showStatus('error', `Error al enviar (código ${response.status}). Intenta nuevamente.`);
+      }
+    } catch (error: any) {
+      const code = error?.status as number | undefined;
+      let msg = 'Error al enviar el mensaje. Intenta nuevamente o contáctanos por WhatsApp.';
+
+      if (code === 400) msg = 'Error de configuración del servicio. Reporta el problema por WhatsApp.';
+      if (code === 401 || code === 403) msg = 'Error de autenticación. Contáctanos por WhatsApp.';
+      if (code === 429) msg = 'Demasiados intentos. Espera unos minutos antes de reintentar.';
+
+      showStatus('error', msg);
+      console.error('EmailJS error:', error);
+    } finally {
+      setLoading(false);
+    }
+  });
+</script>

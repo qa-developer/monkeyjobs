@@ -1,4 +1,5 @@
 ---
+import SpiralDecoration from '~/components/common/SpiralDecoration.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Hero from '~/components/widgets/Hero.astro';
@@ -7,7 +8,7 @@ import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'About us',
+  title: 'Nosotros',
 };
 ---
 
@@ -15,61 +16,75 @@ const metadata = {
   <!-- Hero Widget ******************* -->
 
   <Hero
-    tagline="About us"
+    tagline="Sobre nosotros"
     image={{
       src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Caos Image',
+      alt: 'Equipo MonkeyJobs',
     }}
   >
     <Fragment slot="title">
-      Elevate your online presence with our <br />
-      <span class="text-accent dark:text-white"> Beautiful Website Templates</span>
+      Somos MonkeyJobs S.A.S. <br />
+      <span class="text-accent dark:text-white"> Una casa de desarrollo de software con ADN técnico</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Donec efficitur, ipsum quis congue luctus, mauris magna convallis mauris, eu auctor nisi lectus non augue. Donec
-      quis lorem non massa vulputate efficitur ac at turpis. Sed tincidunt ex a nunc convallis, et lobortis nisi tempus.
-      Suspendisse vitae nisi eget tortor luctus maximus sed non lectus.
+      Nacimos en Bogotá con una convicción simple: el buen software se construye con criterio, ética y obsesión por
+      el detalle. Acompañamos a startups, pymes y áreas digitales a llevar sus ideas a producción con un equipo que
+      entiende negocio y código a partes iguales.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 overflow-hidden">
+        <SpiralDecoration position="top-right" size="xl" opacity={0.45} />
+        <SpiralDecoration position="bottom-left" size="lg" opacity={0.25} flip rotate={180} />
+      </div>
     </Fragment>
   </Hero>
 
   <!-- Stats Widget ****************** -->
 
   <Stats
-    title="Statistics about us"
+    title="MonkeyJobs en números"
     stats={[
-      { title: 'Offices', amount: '4' },
-      { title: 'Employees', amount: '248' },
-      { title: 'Templates', amount: '12' },
-      { title: 'Awards', amount: '24' },
+      { title: 'Sede', amount: '1' },
+      { title: 'Equipo', amount: '20+' },
+      { title: 'Proyectos entregados', amount: '50+' },
+      { title: 'Años de experiencia', amount: '8+' },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 overflow-hidden">
+        <SpiralDecoration position="top-left" size="md" opacity={0.18} />
+        <SpiralDecoration position="bottom-right" size="md" opacity={0.18} flip />
+      </div>
+    </Fragment>
+  </Stats>
 
   <!-- Features3 Widget ************** -->
 
   <Features3
-    title="Our templates"
-    subtitle="Etiam scelerisque, enim eget vestibulum luctus, nibh mauris blandit nulla, nec vestibulum risus justo ut enim. Praesent lacinia diam et ante imperdiet euismod."
+    title="Industrias en las que trabajamos"
+    subtitle="Aplicamos buenas prácticas y stack moderno en sectores donde el software realmente mueve la aguja."
     columns={3}
     isBeforeContent={true}
     items={[
       {
-        title: 'Educational',
+        title: 'Educación',
         description:
-          'Morbi faucibus luctus quam, sit amet aliquet felis tempor id. Cras augue massa, ornare quis dignissim a, molestie vel nulla.',
-        icon: 'tabler:template',
+          'Plataformas LMS, contenido interactivo y herramientas para instituciones educativas y EdTech.',
+        icon: 'tabler:school',
       },
       {
-        title: 'Interior Design',
+        title: 'Fintech',
         description:
-          'Vivamus porttitor, tortor convallis aliquam pretium, turpis enim consectetur elit, vitae egestas purus erat ac nunc nulla.',
-        icon: 'tabler:template',
+          'Procesos de pago, billeteras digitales, scoring y dashboards financieros con altos requisitos de seguridad.',
+        icon: 'tabler:coin',
       },
       {
-        title: 'Photography',
+        title: 'Salud',
         description:
-          'Duis sed lectus in nisl vehicula porttitor eget quis odio. Aliquam erat volutpat. Nulla eleifend nulla id sem fermentum.',
-        icon: 'tabler:template',
+          'Plataformas para clínicas, citas médicas, telemedicina e integración con sistemas de historia clínica.',
+        icon: 'tabler:vaccine',
       },
     ]}
   />
@@ -81,68 +96,68 @@ const metadata = {
     isAfterContent={true}
     items={[
       {
-        title: 'E-commerce',
+        title: 'E-commerce y retail',
         description:
-          'Rutrum non odio at vehicula. Proin ipsum justo, dignissim in vehicula sit amet, dignissim id quam. Sed ac tincidunt sapien.',
-        icon: 'tabler:template',
+          'Tiendas online, marketplaces, integración con POS, inventarios y plataformas de logística.',
+        icon: 'tabler:shopping-cart',
       },
       {
-        title: 'Blog',
+        title: 'Logística y operaciones',
         description:
-          'Nullam efficitur volutpat sem sed fringilla. Suspendisse et enim eu orci volutpat laoreet ac vitae libero.',
-        icon: 'tabler:template',
+          'Sistemas de tracking, optimización de rutas, integraciones con couriers y dashboards operativos.',
+        icon: 'tabler:truck',
       },
       {
-        title: 'Business',
+        title: 'Inmobiliario',
         description:
-          'Morbi et elit finibus, facilisis justo ut, pharetra ipsum. Donec efficitur, ipsum quis congue luctus, mauris magna.',
-        icon: 'tabler:template',
+          'Portales de propiedades, CRMs especializados, tours virtuales y herramientas para constructoras.',
+        icon: 'tabler:building',
       },
       {
-        title: 'Branding',
+        title: 'Servicios profesionales',
         description:
-          'Suspendisse vitae nisi eget tortor luctus maximus sed non lectus. Cras malesuada pretium placerat. Nullam venenatis dolor a ante rhoncus.',
-        icon: 'tabler:template',
+          'Plataformas para agencias, consultorías, despachos legales y firmas que necesitan digitalizarse.',
+        icon: 'tabler:briefcase',
       },
       {
-        title: 'Medical',
+        title: 'Gobierno y ONGs',
         description:
-          'Vestibulum malesuada lacus id nibh posuere feugiat. Nam volutpat nulla a felis ultrices, id suscipit mauris congue. In hac habitasse platea dictumst.',
-        icon: 'tabler:template',
+          'Soluciones digitales para entidades públicas y organizaciones del tercer sector con foco en accesibilidad.',
+        icon: 'tabler:flag',
       },
       {
-        title: 'Fashion Design',
+        title: 'SaaS y startups',
         description:
-          'Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus.',
-        icon: 'tabler:template',
+          'Acompañamos a fundadores desde el MVP hasta el product-market fit con foco en escalabilidad.',
+        icon: 'tabler:rocket',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-      alt: 'Colorful Image',
+      alt: 'Industrias atendidas por MonkeyJobs',
     }}
   />
 
   <!-- Steps2 Widget ****************** -->
 
   <Steps2
-    title="Our values"
-    subtitle="Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus. Nulla facilisi. Vestibulum malesuada lacus."
+    title="Nuestros valores"
+    subtitle="Las cosas que nos definen y que están presentes en cada proyecto, cada reunión y cada commit."
     items={[
       {
-        title: 'Customer-centric approach',
+        title: 'Cliente en el centro',
         description:
-          'Donec id nibh neque. Quisque et fermentum tortor. Fusce vitae dolor a mauris dignissim commodo. Ut eleifend luctus condimentum.',
+          'Tu objetivo de negocio guía las decisiones técnicas. Hacemos preguntas duras al inicio para no asumir nada.',
       },
       {
-        title: 'Constant Improvement',
+        title: 'Mejora continua',
         description:
-          'Phasellus laoreet fermentum venenatis. Vivamus dapibus pulvinar arcu eget mattis. Fusce eget mauris leo.',
+          'Nos formamos constantemente. Stack actualizado, code katas internas y revisiones de aprendizaje en cada cierre de proyecto.',
       },
       {
-        title: 'Ethical Practices',
+        title: 'Ética y transparencia',
         description:
-          'Vestibulum imperdiet libero et lectus molestie, et maximus augue porta. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+          'Sin sobrecostos sorpresa, sin tiempos inflados, sin "venta de humo". Decimos lo que cuesta y lo que toma.',
       },
     ]}
   />
@@ -150,29 +165,30 @@ const metadata = {
   <!-- Steps2 Widget ****************** -->
 
   <Steps2
-    title="Achievements"
-    subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla."
+    title="Logros que respaldan el trabajo"
+    subtitle="Reconocimientos, alianzas y resultados que confirman que el camino es el correcto."
     isReversed={true}
     callToAction={{
-      text: 'See more',
+      text: 'Ver casos de éxito',
       href: '/',
     }}
     items={[
       {
-        title: 'Global reach',
-        description: 'Nam malesuada urna in enim imperdiet tincidunt. Phasellus non tincidunt nisi, at elementum mi.',
+        title: 'Clientes en LATAM y EE.UU.',
+        description:
+          'Atendemos proyectos en Colombia, México, Chile, Estados Unidos y España con equipos remoto-first.',
         icon: 'tabler:globe',
       },
       {
-        title: 'Positive customer feedback and reviews',
+        title: 'Feedback positivo y recurrente',
         description:
-          'Cras semper nulla leo, eget laoreet erat cursus sed. Praesent faucibus massa in purus iaculis dictum.',
+          'Más del 80% de nuestros clientes vuelve por una segunda fase o nos refiere a otra empresa.',
         icon: 'tabler:message-star',
       },
       {
-        title: 'Awards and recognition as industry experts',
+        title: 'Reconocidos por excelencia técnica',
         description:
-          'Phasellus lacinia cursus velit, eu malesuada magna pretium eu. Etiam aliquet tellus purus, blandit lobortis ex rhoncus vitae.',
+          'Charlas en comunidades Angular, IA y product, además de mentorías a equipos junior dentro y fuera de MonkeyJobs.',
         icon: 'tabler:award',
       },
     ]}
@@ -181,25 +197,25 @@ const metadata = {
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="Our locations"
-    tagline="Find us"
+    title="Dónde estamos"
+    tagline="Ubicación"
     columns={4}
     items={[
       {
-        title: 'EE.UU',
-        description: '1234 Lorem Ipsum St, 12345, Miami',
+        title: 'Colombia',
+        description: 'Sede principal · LATAM',
       },
       {
-        title: 'Spain',
-        description: '5678 Lorem Ipsum St, 56789, Madrid',
+        title: 'Remote-first',
+        description: 'Equipo distribuido en LATAM',
       },
       {
-        title: 'Australia',
-        description: '9012 Lorem Ipsum St, 90123, Sydney',
+        title: 'Disponibilidad GMT-5',
+        description: 'Horario alineado con clientes en América',
       },
       {
-        title: 'Brazil',
-        description: '3456 Lorem Ipsum St, 34567, São Paulo',
+        title: 'Soporte 24/7',
+        description: 'Para sistemas críticos en producción',
       },
     ]}
   />
@@ -207,20 +223,20 @@ const metadata = {
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="Technical Support"
-    tagline="Contact us"
+    title="Hablemos"
+    tagline="Contáctanos"
     columns={2}
     items={[
       {
-        title: 'Chat with us',
+        title: 'Escríbenos por chat',
         description:
-          'Integer luctus laoreet libero, auctor varius purus rutrum sit amet. Ut nec molestie nisi, quis eleifend mi.',
+          'Respondemos en minutos durante horario laboral. Cuéntanos qué necesitas y te conectamos con el perfil correcto.',
         icon: 'tabler:messages',
       },
       {
-        title: 'Call us',
+        title: 'Agenda una llamada',
         description:
-          'Mauris faucibus finibus orci, in posuere elit viverra non. In hac habitasse platea dictumst. Cras lobortis metus a hendrerit congue.',
+          'Sesión inicial de 30 minutos sin compromiso para entender tu proyecto y ver si encajamos como equipo.',
         icon: 'tabler:headset',
       },
     ]}

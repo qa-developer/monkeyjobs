@@ -94,5 +94,8 @@ export default defineConfig({
         '~': path.resolve(__dirname, './src'),
       },
     },
+    server: {
+      allowedHosts: ['.alexis-madrigal.com', '.trycloudflare.com', '.ngrok-free.app', '.loca.lt'],
+    },
   },
 });

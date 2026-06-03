@@ -1,19 +1,19 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+import SpiralDecoration from '~/components/common/SpiralDecoration.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'MonkeyJobs — Casa de desarrollo de software en Bogotá',
   ignoreTitleTemplate: true,
 };
 ---
@@ -25,77 +25,89 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
+        text: 'Cotiza tu proyecto',
+        href: '/contact',
+        icon: 'tabler:rocket',
       },
-      { text: 'Learn more', href: '#features' },
+      { text: 'Ver servicios', href: '#features' },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
+    image={{
+      src: '~/assets/images/hero_img2.png',
+      alt: 'MonkeyJobs — Casa de desarrollo de software premium',
+      width: 1480,
+      height: 878,
+      class: 'mx-auto w-full max-w-3xl lg:max-w-4xl h-auto',
+    }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white"> Astro v6</span> + Tailwind CSS
+      Construimos <span class="hidden xl:inline">productos digitales</span>
+      <span class="text-accent dark:text-white"> a la medida</span> con IA + ingeniería sólida
     </Fragment>
 
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro v6 +
-        Tailwind CSS v4.</span
+        <span class="font-semibold">MonkeyJobs S.A.S.</span> es una casa de desarrollo de software con sede en Bogotá. Diseñamos
+        y construimos web, apps móviles, sistemas empresariales e inteligencia artificial para acelerar tu operación.</span
       >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages & Blogs.
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">MonkeyJobs: Software a la medida.</span>
+      Ideal para startups, pymes, áreas digitales, retail, fintech y proyectos que necesitan resultados reales.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 overflow-hidden">
+        <SpiralDecoration position="top-right" size="xl" opacity={0.45} />
+        <SpiralDecoration position="bottom-left" size="lg" opacity={0.25} flip rotate={180} />
+      </div>
     </Fragment>
   </Hero>
 
   <!-- Note Widget ******************* -->
 
-  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
+  <Note title="Filosofía:" description="Simplicidad, buenas prácticas y alto rendimiento desde el primer commit." />
 
   <!-- Features Widget *************** -->
 
   <Features
     id="features"
-    tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023, 2024 and 2025."
+    tagline="Servicios"
+    title="Lo que MonkeyJobs construye contigo"
+    subtitle="Trabajamos como una extensión de tu equipo. Del descubrimiento al deploy, te acompañamos en cada fase con criterio técnico y enfoque en negocio."
     items={[
       {
-        title: 'Astro + Tailwind CSS Integration',
+        title: 'Desarrollo web a la medida',
         description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility. Now powered by Tailwind CSS v4.',
+          'Sitios y aplicaciones web modernas con Angular, React, Astro y SSR. Performance, SEO y escalabilidad como estándar.',
         icon: 'tabler:brand-tailwind',
       },
       {
-        title: 'Ready-to-use Components',
+        title: 'Apps móviles nativas y cross-platform',
         description:
-          'Widgets made with Tailwind CSS v4 ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        icon: 'tabler:components',
+          'iOS, Android y Flutter. Producto pulido, store-ready, integrado con tus sistemas y servicios cloud.',
+        icon: 'tabler:device-mobile',
       },
       {
-        title: 'Best Practices',
+        title: 'Inteligencia Artificial y agentes',
         description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
+          'Integramos modelos generativos, agentes autónomos y pipelines de ML en tus flujos críticos de negocio.',
+        icon: 'tabler:robot',
       },
       {
-        title: 'Excellent Page Speed',
+        title: 'Sistemas empresariales e integraciones',
         description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket',
+          'ERPs, CRMs, APIs y middleware. Conectamos lo que tu operación necesita, sin parches frágiles.',
+        icon: 'tabler:server-bolt',
       },
       {
-        title: 'Search Engine Optimization (SEO)',
+        title: 'Consultoría y arquitectura',
         description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left',
-      },
-      {
-        title: 'Open to new ideas and contributions',
-        description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
+          'Auditoría técnica, definición de roadmap y acompañamiento estratégico para escalar tu producto.',
         icon: 'tabler:bulb',
+      },
+      {
+        title: 'Equipos dedicados (staff augmentation)',
+        description:
+          'Perfiles seniors integrados a tu equipo en sprints reales. Sin intermediarios, sin sorpresas.',
+        icon: 'tabler:users-group',
       },
     ]}
   />
@@ -104,33 +116,33 @@ const metadata = {
 
   <Content
     isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
+    tagline="Cómo trabajamos"
+    title="Construido sobre fundamentos modernos"
     items={[
       {
-        title: 'Built on top of Astro v6',
+        title: 'Stack actualizado y probado en producción',
         description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+          'Angular 17+, Astro, Node, TypeScript, Tailwind, .NET, Python. Elegimos la herramienta correcta para cada proyecto.',
       },
       {
-        title: 'Styled using Tailwind CSS v4',
+        title: 'Arquitectura escalable desde el día uno',
         description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+          'Diseñamos para crecer: SSR, micro-frontends, CI/CD, observabilidad, modular monoliths o microservicios según el caso.',
       },
       {
-        title: 'Cross-browser compatibility',
+        title: 'Calidad como contrato',
         description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
+          'Code review, testing automatizado, linters y revisiones de seguridad integradas al flujo. Sin atajos.',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
+      alt: 'Equipo MonkeyJobs trabajando',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-      Gain a competitive advantage by incorporating industry leading practices
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Ingeniería con criterio y resultados medibles</h3>
+      Ventaja competitiva real al adoptar prácticas líderes de la industria.
     </Fragment>
 
     <Fragment slot="bg">
@@ -144,31 +156,31 @@ const metadata = {
     isAfterContent
     items={[
       {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
+        title: 'Diseño centrado en el usuario',
+        description: `UI/UX pensada para tu cliente final. Prototipado, validación y diseño visual alineado a tu marca.`,
       },
       {
-        title: 'Multiple layout possibilities',
+        title: 'Múltiples opciones de layout',
         description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
+          'Exploramos arquitecturas y diseños hasta encontrar la mejor estructura para tu contenido y conversión.',
       },
       {
-        title: 'Fully responsive design',
+        title: 'Diseño responsive completo',
         description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
+          'Rendimiento óptimo en cualquier dispositivo. Experiencia consistente desde móvil hasta pantalla 4K.',
       },
       {
-        title: 'Integration of media',
+        title: 'Integración multimedia',
         description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
+          'Imágenes optimizadas, video, modelos 3D, animaciones y elementos interactivos que enganchan al visitante.',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
+      alt: 'Planos de arquitectura de software',
     }}
   >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
+    <Fragment slot="content">Tu presencia digital, contada como debería contarse.</Fragment>
 
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
@@ -182,31 +194,33 @@ const metadata = {
     isAfterContent
     items={[
       {
-        title: 'Enhanced user engagement',
+        title: 'Engagement medible',
         description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
+          'Métricas, eventos y analítica desde el día uno. No optimizamos lo que no podemos medir.',
       },
       {
-        title: 'Continuous improvement',
+        title: 'Mejora continua',
         description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
+          'Mantenimiento evolutivo y actualizaciones constantes para que tu producto no envejezca antes de tiempo.',
       },
       {
-        title: 'Time and resource efficiency',
+        title: 'Time-to-market eficiente',
         description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
+          'No reinventamos la rueda. Componentes, plantillas y procesos propios para lanzar antes con MonkeyJobs.',
       },
       {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
+        title: 'Soporte cercano',
+        description: `Comunicación directa con el equipo técnico. Sin intermediarios, sin tickets infinitos.`,
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
+      src: '~/assets/images/crecimiento_digital.png',
+      alt: 'MonkeyJobs — Diseñado para acompañar tu crecimiento digital',
+      width: 565,
+      height: 460,
     }}
   >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+    <Fragment slot="content">Diseñado para acompañar tu crecimiento.</Fragment>
 
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
@@ -216,92 +230,92 @@ const metadata = {
   <!-- Steps Widget ****************** -->
 
   <Steps
-    title="Get your dream website up and running in no time with AstroWind."
+    title="Así trabajamos contigo, paso a paso."
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Download</span>',
+        title: 'Paso 1: <span class="font-medium">Descubrimiento</span>',
         description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
+          'Entendemos tu negocio, tus usuarios y tus restricciones. Definimos alcance, objetivos y métricas de éxito en sesiones de trabajo conjunto.',
+        icon: 'tabler:bulb',
       },
       {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
+        title: 'Paso 2: <span class="font-medium">Diseño y arquitectura</span>',
         description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
+          'Prototipos UX/UI, arquitectura técnica, stack y roadmap. Validamos contigo antes de escribir una sola línea de código.',
+        icon: 'tabler:layout-grid',
       },
       {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
+        title: 'Paso 3: <span class="font-medium">Construcción ágil</span>',
         description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
+          'Sprints quincenales con entregables reales. Visibilidad total del avance, feedback continuo y cero sorpresas al final.',
+        icon: 'tabler:code',
       },
       {
-        title: 'Ready!',
+        title: '¡Listo para producción!',
         icon: 'tabler:check',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
+      alt: 'Proceso paso a paso',
     }}
   />
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS v4"
-    tagline="Components"
+    title="Capacidades que entregamos"
+    subtitle="Componentes y prácticas que aplicamos en cada producto que sale al aire."
+    tagline="Capacidades"
     items={[
       {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
+        title: 'Diseño UI/UX',
+        description: 'Identidad visual, prototipos interactivos y design systems escalables para tu producto.',
         icon: 'flat-color-icons:template',
       },
       {
-        title: 'Heros',
+        title: 'Frontend moderno',
         description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
+          'Angular, React, Astro, Vue. Componentes accesibles, performance optimizada y SEO técnico.',
         icon: 'flat-color-icons:gallery',
       },
       {
-        title: 'Features',
+        title: 'Backend robusto',
         description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
+          'Node, .NET, Python, Go. APIs REST y GraphQL, microservicios y arquitecturas event-driven.',
         icon: 'flat-color-icons:approval',
       },
       {
-        title: 'Content',
+        title: 'Bases de datos',
         description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
+          'PostgreSQL, MongoDB, MySQL, Redis. Modelado, optimización de consultas y migraciones seguras.',
         icon: 'flat-color-icons:document',
       },
       {
-        title: 'Call-to-Action',
+        title: 'Cloud y DevOps',
         description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
+          'AWS, Azure, GCP, Vercel. CI/CD, infra como código, monitoreo y costos optimizados.',
         icon: 'flat-color-icons:advertising',
       },
       {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
+        title: 'Inteligencia Artificial',
+        description: 'LLMs, agentes autónomos, RAG, embeddings y automatización de procesos con IA.',
         icon: 'flat-color-icons:currency-exchange',
       },
       {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
+        title: 'Mobile',
+        description: 'iOS nativo, Android nativo y Flutter. Store deployment, push notifications y analytics integrados.',
         icon: 'flat-color-icons:voice-presentation',
       },
       {
-        title: 'Contact',
+        title: 'Integraciones',
         description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
+          'Pasarelas de pago, ERPs, CRMs, WhatsApp Business, APIs gubernamentales y servicios de terceros.',
         icon: 'flat-color-icons:business-contact',
       },
       {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
+        title: 'Seguridad',
+        description: 'Auditoría, hardening, OWASP top 10, autenticación multifactor y cumplimiento normativo.',
         icon: 'flat-color-icons:database',
       },
     ]}
@@ -311,53 +325,43 @@ const metadata = {
     </Fragment>
   </Features2>
 
-  <!-- HighlightedPosts Widget ******* -->
-
-  <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro v6 + Tailwind CSS v4.
-                        Astro is a very interesting technology. Thanks.
-                `}
-  />
-
   <!-- FAQs Widget ******************* -->
 
   <FAQs
-    title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    title="Preguntas frecuentes"
+    subtitle="Resolvemos las dudas más comunes antes de empezar un proyecto contigo."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Why AstroWind?',
+        title: '¿Cuánto tiempo toma desarrollar un proyecto?',
         description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+          'Depende del alcance. Un MVP funcional toma entre 6 y 12 semanas. Plataformas más complejas pueden tomar de 3 a 9 meses. En la fase de descubrimiento definimos cronograma realista y entregables por sprint.',
       },
       {
-        title: 'What do I need to start?',
+        title: '¿Trabajan con startups o solo con empresas grandes?',
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          'Ambos. Tenemos planes y procesos pensados para startups en etapa temprana, pymes en crecimiento y áreas digitales de empresas consolidadas. Te acompañamos según el momento de tu negocio.',
       },
       {
-        title: 'How to install the Astro + Tailwind CSS template?',
+        title: '¿Cómo es el proceso de cotización?',
         description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+          'Conversación inicial gratuita para entender tu necesidad. Luego enviamos una propuesta con alcance, cronograma e inversión. Sin compromiso hasta que firmes la orden de trabajo.',
       },
       {
-        title: "What's something that you don't understand?",
+        title: '¿Quién es dueño del código?',
         description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+          'Tú. Todo el código, diseños, documentación y propiedad intelectual generada queda 100% a tu nombre. Recibes acceso completo a repositorios desde el día uno.',
       },
       {
-        title: 'What is something that you would like to try again?',
+        title: '¿Ofrecen soporte y mantenimiento después del lanzamiento?',
         description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+          'Sí. Tenemos planes de mantenimiento evolutivo, soporte 24/7 para sistemas críticos y bolsas de horas mensuales para mejoras continuas. Tú eliges el nivel.',
       },
       {
-        title: 'If you could only ask one question to each person you meet, what would that question be?',
+        title: '¿Pueden integrarse con mi equipo interno?',
         description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+          'Por supuesto. Trabajamos como extensión de tu equipo, asistimos a tus ceremonias ágiles, usamos tu stack de comunicación y nos adaptamos a tu proceso. Sin egos.',
       },
     ]}
   />
@@ -366,12 +370,19 @@ const metadata = {
 
   <Stats
     stats={[
-      { title: 'Downloads', amount: '132K' },
-      { title: 'Stars', amount: '24.8K' },
-      { title: 'Forks', amount: '10.3K' },
-      { title: 'Users', amount: '48.4K' },
+      { title: 'Proyectos entregados', amount: '50+' },
+      { title: 'Reducción de costos', amount: '-70%' },
+      { title: 'Time-to-market', amount: '2-6 sem' },
+      { title: 'Equipo MonkeyJobs', amount: '20+' },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 overflow-hidden">
+        <SpiralDecoration position="top-left" size="md" opacity={0.18} />
+        <SpiralDecoration position="bottom-right" size="md" opacity={0.18} flip />
+      </div>
+    </Fragment>
+  </Stats>
 
   <!-- CallToAction Widget *********** -->
 
@@ -379,20 +390,26 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
+        text: 'Cotiza tu proyecto',
+        href: '/contact',
+        icon: 'tabler:rocket',
       },
     ]}
   >
     <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+      ¿Listo para construir&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">algo grande?</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
+      Cuéntanos qué necesitas. Conversamos sin compromiso y te damos claridad técnica y de negocio. <br class="hidden md:inline"
+      />En MonkeyJobs no vendemos humo: vendemos resultados.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 overflow-hidden">
+        <SpiralDecoration position="top-right" size="lg" opacity={0.32} />
+        <SpiralDecoration position="bottom-left" size="lg" opacity={0.32} flip rotate={180} />
+      </div>
     </Fragment>
   </CallToAction>
 </Layout>

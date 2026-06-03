@@ -11,6 +11,7 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import WelcomeLoader from '~/components/widgets/WelcomeLoader.astro';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
@@ -40,9 +41,49 @@ const { language, textDirection } = I18N;
 
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
+
+    <script is:inline>
+      // Preserve Vite-injected <style> tags during View Transitions.
+      // In dev, Tailwind v4 + @tailwindcss/vite inject CSS as inline <style>
+      // elements. ClientRouter swap replaces <head> contents and drops them,
+      // leaving the page unstyled until next full reload.
+      (function () {
+        if (window.__mjPreserveStylesInstalled) return;
+        window.__mjPreserveStylesInstalled = true;
+
+        function snapshotStyles() {
+          const nodes = document.head.querySelectorAll(
+            'style, link[rel="stylesheet"], link[as="style"]'
+          );
+          window.__mjStyleSnapshot = Array.from(nodes).map((n) => n.cloneNode(true));
+        }
+
+        function restoreStyles() {
+          if (!window.__mjStyleSnapshot) return;
+          const head = document.head;
+          window.__mjStyleSnapshot.forEach((node) => {
+            const tag = node.tagName.toLowerCase();
+            let selector;
+            if (tag === 'link' && node.getAttribute('href')) {
+              selector = `link[href="${CSS.escape(node.getAttribute('href'))}"]`;
+            } else if (tag === 'style' && node.getAttribute('data-vite-dev-id')) {
+              selector = `style[data-vite-dev-id="${CSS.escape(node.getAttribute('data-vite-dev-id'))}"]`;
+            }
+            if (selector && head.querySelector(selector)) return;
+            head.appendChild(node.cloneNode(true));
+          });
+        }
+
+        snapshotStyles();
+        document.addEventListener('astro:before-swap', snapshotStyles);
+        document.addEventListener('astro:after-swap', restoreStyles);
+        document.addEventListener('astro:page-load', restoreStyles);
+      })();
+    </script>
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
+    <WelcomeLoader />
     <slot />
 
     <BasicScripts />
