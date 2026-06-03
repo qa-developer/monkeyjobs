@@ -187,11 +187,17 @@ const metadata = {
 <script>
   import emailjs from '@emailjs/browser';
 
-  const SERVICE_ID = 'service_z9qrxbo';
-  const TEMPLATE_ID = 'template_6so7rzu';
-  const PUBLIC_KEY = 'BBUTs4-kl9ApFJADN';
+  const SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
 
-  emailjs.init(PUBLIC_KEY);
+  if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+    console.error(
+      '[contact] Faltan credenciales EmailJS. Define PUBLIC_EMAILJS_SERVICE_ID, PUBLIC_EMAILJS_TEMPLATE_ID y PUBLIC_EMAILJS_PUBLIC_KEY en .env.'
+    );
+  } else {
+    emailjs.init(PUBLIC_KEY);
+  }
 
   const form = document.getElementById('mj-contact-form') as HTMLFormElement | null;
   const statusEl = document.getElementById('mj-form-status');
