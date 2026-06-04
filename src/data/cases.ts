@@ -58,7 +58,7 @@ export const cases: CaseStudy[] = [
     ],
     icon: 'tabler:shopping-cart',
     image: {
-      src: 'https://images.unsplash.com/photo-1556909211-d3b9a47a6c87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
+      src: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
       alt: 'Plataforma de e-commerce headless para retail — MonkeyJobs',
     },
   },
