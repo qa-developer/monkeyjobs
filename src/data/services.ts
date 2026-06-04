@@ -22,6 +22,7 @@ export interface ServiceData {
   metaDescription: string;
   tagline: string;
   heroTitle: string;
+  heroTitleHtml: string;
   heroSubtitle: string;
   intro: string;
   capabilities: ServiceItem[];
@@ -40,6 +41,7 @@ export const services: ServiceData[] = [
       'Sitios y aplicaciones web con Angular, React, Astro y Next. SSR, SEO técnico, performance y diseño responsive. Desarrollo web a la medida con MonkeyJobs.',
     tagline: 'Desarrollo web',
     heroTitle: 'Desarrollo web a la medida',
+    heroTitleHtml: 'Desarrollo web <span class="text-accent dark:text-white">a la medida</span>',
     heroSubtitle:
       'Construimos sitios y aplicaciones web rápidas, accesibles y listas para escalar. Del landing al producto SaaS, con SSR, SEO técnico y rendimiento como estándar.',
     intro:
@@ -95,6 +97,7 @@ export const services: ServiceData[] = [
       'Apps móviles nativas y cross-platform: iOS, Android, Flutter y React Native. Publicación en stores, push notifications, analytics y deep linking. MonkeyJobs.',
     tagline: 'Apps móviles',
     heroTitle: 'Apps móviles nativas y cross-platform',
+    heroTitleHtml: 'Apps móviles <span class="text-accent dark:text-white">nativas y cross-platform</span>',
     heroSubtitle:
       'Llevamos tu producto al bolsillo de tus usuarios: iOS y Android nativo, Flutter y React Native, store-ready e integrados con tus sistemas.',
     intro:
@@ -146,6 +149,7 @@ export const services: ServiceData[] = [
       'Integración de LLMs, agentes autónomos, RAG y automatización de procesos con IA. Casos reales en producción para tu operación. MonkeyJobs, Bogotá.',
     tagline: 'Inteligencia Artificial',
     heroTitle: 'Inteligencia Artificial y agentes',
+    heroTitleHtml: 'Inteligencia Artificial <span class="text-accent dark:text-white">y agentes</span>',
     heroSubtitle:
       'Integramos modelos generativos, agentes autónomos y pipelines de ML en tus flujos críticos de negocio, con criterio de ingeniería y casos reales en producción.',
     intro:
@@ -197,6 +201,7 @@ export const services: ServiceData[] = [
       'ERPs y CRMs a la medida, APIs, microservicios e integraciones con sistemas legacy. Middleware confiable para tu operación. MonkeyJobs, Bogotá.',
     tagline: 'Sistemas empresariales',
     heroTitle: 'Sistemas empresariales e integraciones',
+    heroTitleHtml: 'Sistemas empresariales <span class="text-accent dark:text-white">e integraciones</span>',
     heroSubtitle:
       'Conectamos lo que tu operación necesita: ERPs y CRMs a la medida, APIs e integraciones con tus sistemas legacy, sin parches frágiles.',
     intro:
@@ -248,6 +253,7 @@ export const services: ServiceData[] = [
       'Auditoría técnica, definición de roadmap, arquitectura de software y acompañamiento estratégico para escalar tu producto o equipo. MonkeyJobs.',
     tagline: 'Consultoría y arquitectura',
     heroTitle: 'Consultoría y arquitectura de software',
+    heroTitleHtml: 'Consultoría y arquitectura <span class="text-accent dark:text-white">de software</span>',
     heroSubtitle:
       'Auditoría técnica, definición de roadmap y acompañamiento estratégico para escalar tu producto con criterio de ingeniería.',
     intro:

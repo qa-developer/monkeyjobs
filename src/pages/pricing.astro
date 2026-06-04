@@ -71,9 +71,11 @@ const breadcrumbJsonLd = {
 
   <HeroText
     tagline="Planes"
-    title="Inversión clara para cada etapa de tu producto"
     subtitle="Modelos pensados para acompañarte desde el MVP hasta plataformas en producción. Sin sorpresas en la factura."
   >
+    <Fragment slot="title">
+      Inversión clara para <span class="text-accent dark:text-white">cada etapa de tu producto</span>
+    </Fragment>
     <Fragment slot="bg">
       <SpiralDecoration position="top-right" size="xl" opacity={0.4} />
       <SpiralDecoration position="bottom-left" size="lg" opacity={0.22} flip rotate={180} />

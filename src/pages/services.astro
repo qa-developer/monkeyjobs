@@ -68,7 +68,6 @@ const breadcrumbJsonLd = {
 
   <Hero
     tagline="Servicios"
-    title="Software a la medida para tu negocio"
     subtitle="Diseñamos, construimos y mantenemos productos digitales con criterio técnico y enfoque de negocio. Desde plataformas web hasta agentes inteligentes, te acompañamos en cada etapa."
     actions={[{ variant: 'primary', text: 'Cotizar proyecto', href: '/contact' }]}
     image={{
@@ -76,6 +75,10 @@ const breadcrumbJsonLd = {
       alt: 'Servicios de desarrollo de software a la medida de MonkeyJobs: web, apps móviles e IA',
     }}
   >
+    <Fragment slot="title">
+      Software <span class="text-accent dark:text-white">a la medida</span> para tu negocio
+    </Fragment>
+
     <Fragment slot="bg">
       <div class="absolute inset-0 overflow-hidden">
         <SpiralDecoration position="top-right" size="xl" opacity={0.45} />

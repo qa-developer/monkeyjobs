@@ -45,7 +45,10 @@ const breadcrumbJsonLd = {
 ---
 
 <Layout metadata={metadata}>
-  <HeroText tagline="Blog" title="Insights de desarrollo de software">
+  <HeroText tagline="Blog">
+    <Fragment slot="title">
+      Insights de <span class="text-accent dark:text-white">desarrollo de software</span>
+    </Fragment>
     <Fragment slot="bg">
       <SpiralDecoration position="top-right" size="xl" opacity={0.4} />
       <SpiralDecoration position="bottom-left" size="lg" opacity={0.22} flip rotate={180} />

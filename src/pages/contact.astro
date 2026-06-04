@@ -34,7 +34,10 @@ const breadcrumbJsonLd = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contacto" title="Hablemos de tu proyecto">
+  <HeroText tagline="Contacto">
+    <Fragment slot="title">
+      Hablemos de <span class="text-accent dark:text-white">tu proyecto</span>
+    </Fragment>
     <Fragment slot="bg">
       <SpiralDecoration position="top-right" size="xl" opacity={0.4} />
       <SpiralDecoration position="bottom-left" size="lg" opacity={0.22} flip rotate={180} />

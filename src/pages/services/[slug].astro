@@ -73,11 +73,14 @@ const breadcrumbJsonLd = {
 <Layout metadata={metadata}>
   <Hero
     tagline={service.tagline}
-    title={service.heroTitle}
     subtitle={service.heroSubtitle}
     actions={[{ variant: 'primary', text: 'Cotizar este servicio', href: '/contact', icon: 'tabler:rocket' }]}
     image={service.image}
   >
+    <Fragment slot="title">
+      <span set:html={service.heroTitleHtml} />
+    </Fragment>
+
     <Fragment slot="bg">
       <div class="absolute inset-0 overflow-hidden">
         <SpiralDecoration position="top-right" size="xl" opacity={0.45} />

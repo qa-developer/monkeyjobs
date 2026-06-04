@@ -44,9 +44,11 @@ const breadcrumbJsonLd = {
 <Layout metadata={metadata}>
   <HeroText
     tagline="Casos de éxito"
-    title="Proyectos que hemos construido"
     subtitle="Una muestra del trabajo que hacemos, organizada por sector. Retos reales de negocio resueltos con ingeniería sólida, integraciones y, cuando aporta, inteligencia artificial."
   >
+    <Fragment slot="title">
+      Proyectos que <span class="text-accent dark:text-white">hemos construido</span>
+    </Fragment>
     <Fragment slot="bg">
       <SpiralDecoration position="top-right" size="xl" opacity={0.4} />
       <SpiralDecoration position="bottom-left" size="lg" opacity={0.22} flip rotate={180} />
