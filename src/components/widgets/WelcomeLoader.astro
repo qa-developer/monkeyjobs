@@ -3,6 +3,18 @@ const HIDE_AFTER_MS = 2400;
 const DESTROY_AFTER_MS = 3000;
 ---
 
+<script is:inline>
+  // Si la sesión ya vio el preloader (navegación interna), márcalo oculto
+  // ANTES de pintar: evita el flash del overlay oscuro en cada recarga.
+  (function () {
+    try {
+      if (sessionStorage.getItem('mj-preloader-shown') === '1') {
+        document.documentElement.classList.add('mj-preloader-skip');
+      }
+    } catch (e) {}
+  })();
+</script>
+
 <div
   id="mj-preloader"
   class="mj-preloader"
@@ -39,6 +51,11 @@ const DESTROY_AFTER_MS = 3000;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+  }
+
+  /* Navegación interna (ya visto en la sesión): nace oculto, sin flash ni transición */
+  :global(html.mj-preloader-skip) .mj-preloader {
+    display: none;
   }
 
   .mj-preloader__spinner {
