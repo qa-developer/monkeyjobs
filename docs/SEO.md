@@ -38,6 +38,11 @@ El código ya está listo; solo falta pegar cada ID en `src/config.yaml`:
 
 Tras pegar los IDs: `npm run build` y desplegar. Luego, en cada consola, **enviar el sitemap** `https://www.monkeyjobs.co/sitemap-index.xml`.
 
+### Indexación acelerada (sin credenciales — ya listo)
+
+- **IndexNow** — clave `d19f3edb3b9d4a4b97f82690f6c41342` publicada en `/d19f3edb3b9d4a4b97f82690f6c41342.txt`. Tras cada despliegue, ejecutar `npm run indexnow` para notificar a Bing, Yandex y Seznam las URLs del sitemap; las indexan en horas en lugar de días. (Google no usa IndexNow, pero descubre por sitemap.) Ideal automatizarlo como paso post-deploy en CI.
+- **RSS** — `https://www.monkeyjobs.co/rss.xml` (autodiscovery en el `<head>`). Permite que lectores y agregadores sigan el blog; útil al difundir artículos.
+
 ---
 
 ## 3. Identidad de marca
