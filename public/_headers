@@ -4,7 +4,13 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  # HTML y rutas: siempre revalidar para que tras cada deploy se sirva fresco
+  # (evita rutas "pegadas" en caché). Los assets con hash llevan su propia
+  # regla immutable abajo y ganan por especificidad.
+  Cache-Control: public, max-age=0, must-revalidate
 
+# Assets con hash en el nombre → cache fuerte e inmutable (nunca stale:
+# si el contenido cambia, cambia el hash y por tanto la URL).
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
