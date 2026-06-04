@@ -1,0 +1,4 @@
+# MonkeyJobs S.A.S. — Política de divulgación responsable
+Contact: mailto:javierbr1277@gmail.com
+Preferred-Languages: es, en
+Canonical: https://www.monkeyjobs.co/.well-known/security.txt

@@ -4,7 +4,13 @@ site:
   base: '/'
   trailingSlash: false
 
+  # Verificación de motores de búsqueda — pegar el ID/token de cada consola.
+  # Google Search Console: https://search.google.com/search-console
   googleSiteVerificationId: ''
+  # Bing Webmaster Tools (msvalidate.01): https://www.bing.com/webmasters
+  bingSiteVerificationId: ''
+  # Yandex Webmaster: https://webmaster.yandex.com
+  yandexSiteVerificationId: ''
 
 # Default SEO metadata
 metadata:
