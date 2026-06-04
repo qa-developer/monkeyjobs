@@ -1,0 +1,87 @@
+---
+import { SITE } from 'astrowind:config';
+import StructuredData from '~/components/common/StructuredData.astro';
+import logoImage from '~/assets/images/logo_monkeyjobs.png';
+
+const siteUrl = SITE?.site || '';
+const logoUrl = new URL(logoImage.src, siteUrl).toString();
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: 'MonkeyJobs S.A.S.',
+  alternateName: 'MonkeyJobs',
+  url: siteUrl,
+  logo: {
+    '@type': 'ImageObject',
+    url: logoUrl,
+    width: 512,
+    height: 512,
+  },
+  description:
+    'Casa de desarrollo de software en Bogotá. Construimos web, apps móviles, sistemas empresariales e inteligencia artificial a la medida.',
+  foundingDate: '2017',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bogotá',
+    addressRegion: 'Cundinamarca',
+    addressCountry: 'CO',
+  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: '+57-301-385-9952',
+      contactType: 'customer service',
+      areaServed: ['CO', 'MX', 'CL', 'US', 'ES'],
+      availableLanguage: ['Spanish', 'English'],
+    },
+  ],
+  sameAs: [
+    'https://www.linkedin.com/company/noyecode',
+    'https://github.com/noyecode',
+    'https://www.youtube.com/channel/UCew_c8BymxCRLOx8vOQbqhg',
+  ],
+};
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${siteUrl}/#localbusiness`,
+  name: 'MonkeyJobs S.A.S.',
+  url: siteUrl,
+  image: logoUrl,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bogotá',
+    addressRegion: 'Cundinamarca',
+    addressCountry: 'CO',
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'Colombia' },
+    { '@type': 'Country', name: 'México' },
+    { '@type': 'Country', name: 'Chile' },
+    { '@type': 'Country', name: 'Estados Unidos' },
+    { '@type': 'Country', name: 'España' },
+  ],
+  telephone: '+57-301-385-9952',
+  email: 'javierbr1277@gmail.com',
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: 'MonkeyJobs',
+  description:
+    'Sitio web oficial de MonkeyJobs S.A.S. — casa de desarrollo de software en Bogotá.',
+  publisher: { '@id': `${siteUrl}/#organization` },
+  inLanguage: 'es-CO',
+};
+---
+
+<StructuredData data={organization} />
+<StructuredData data={localBusiness} />
+<StructuredData data={website} />

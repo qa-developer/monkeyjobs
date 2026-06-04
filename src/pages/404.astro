@@ -4,9 +4,14 @@ import SpiralDecoration from '~/components/common/SpiralDecoration.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 
 const title = `Error 404`;
+const metadata = {
+  title,
+  description: 'La página que buscas no existe. Vuelve al inicio de MonkeyJobs.',
+  robots: { index: false, follow: true },
+};
 ---
 
-<Layout metadata={{ title }}>
+<Layout metadata={metadata}>
   <section class="relative flex items-center h-full p-16 overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <SpiralDecoration position="top-right" size="xl" opacity={0.35} />

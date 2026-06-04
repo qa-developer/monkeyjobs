@@ -1,14 +1,65 @@
 ---
 import SpiralDecoration from '~/components/common/SpiralDecoration.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import { SITE } from 'astrowind:config';
 
 const metadata = {
-  title: 'Servicios',
+  title: 'Servicios de desarrollo de software a la medida',
+  description:
+    'Desarrollo web, apps móviles (iOS, Android, Flutter), IA y agentes, sistemas empresariales, e-commerce, DevOps y staff augmentation. Equipo senior MonkeyJobs.',
+};
+
+const siteUrl = SITE?.site || '';
+
+const servicesCatalog = [
+  { name: 'Desarrollo web', description: 'Sitios y aplicaciones web con Angular, React, Astro y Next. Performance, SEO técnico y SSR.' },
+  { name: 'Apps móviles', description: 'iOS y Android nativo, Flutter, React Native. Publicación en stores, push notifications, analytics.' },
+  { name: 'Inteligencia Artificial', description: 'Integración de LLMs, agentes autónomos, RAG y automatización de procesos.' },
+  { name: 'Sistemas empresariales', description: 'ERPs a la medida, CRMs, integraciones con sistemas legacy y middleware confiable.' },
+  { name: 'E-commerce', description: 'Tiendas online performantes, integraciones con pasarelas de pago, logística y marketing.' },
+  { name: 'Backend y APIs', description: 'APIs REST, GraphQL, microservicios, event-driven. Node, .NET, Python y Go.' },
+  { name: 'DevOps y Cloud', description: 'AWS, Azure, GCP. CI/CD, infra como código, monitoreo, observabilidad y optimización de costos.' },
+  { name: 'Consultoría técnica', description: 'Auditoría de código, roadmap, arquitectura y acompañamiento estratégico.' },
+  { name: 'Staff augmentation', description: 'Perfiles seniors integrados a tu equipo en sprints reales, sin intermediarios.' },
+];
+
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Desarrollo de software a la medida',
+  provider: { '@id': `${siteUrl}/#organization` },
+  areaServed: [
+    { '@type': 'Country', name: 'Colombia' },
+    { '@type': 'Country', name: 'México' },
+    { '@type': 'Country', name: 'Estados Unidos' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios MonkeyJobs',
+    itemListElement: servicesCatalog.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.name,
+        description: s.description,
+      },
+    })),
+  },
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Servicios', item: `${siteUrl}/services` },
+  ],
 };
 ---
 
@@ -240,4 +291,7 @@ const metadata = {
       </div>
     </Fragment>
   </CallToAction>
+
+  <StructuredData data={serviceJsonLd} />
+  <StructuredData data={breadcrumbJsonLd} />
 </Layout>

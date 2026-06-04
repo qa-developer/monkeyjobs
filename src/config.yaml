@@ -17,6 +17,7 @@ metadata:
     follow: true
   openGraph:
     site_name: MonkeyJobs
+    locale: es_CO
     images:
       - url: '~/assets/images/hero_img2.png'
         width: 1200

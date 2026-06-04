@@ -11,10 +11,75 @@ import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import { SITE } from 'astrowind:config';
 
 const metadata = {
   title: 'MonkeyJobs — Casa de desarrollo de software en Bogotá',
   ignoreTitleTemplate: true,
+  description:
+    'Casa de desarrollo de software en Bogotá. Construimos web, apps móviles, sistemas empresariales e inteligencia artificial a la medida. Equipo senior, time-to-market real.',
+};
+
+const faqs = [
+  {
+    title: '¿Cuánto tiempo toma desarrollar un proyecto?',
+    description:
+      'Depende del alcance. Un MVP funcional toma entre 6 y 12 semanas. Plataformas más complejas pueden tomar de 3 a 9 meses. En la fase de descubrimiento definimos cronograma realista y entregables por sprint.',
+  },
+  {
+    title: '¿Trabajan con startups o solo con empresas grandes?',
+    description:
+      'Ambos. Tenemos planes y procesos pensados para startups en etapa temprana, pymes en crecimiento y áreas digitales de empresas consolidadas. Te acompañamos según el momento de tu negocio.',
+  },
+  {
+    title: '¿Cómo es el proceso de cotización?',
+    description:
+      'Conversación inicial gratuita para entender tu necesidad. Luego enviamos una propuesta con alcance, cronograma e inversión. Sin compromiso hasta que firmes la orden de trabajo.',
+  },
+  {
+    title: '¿Quién es dueño del código?',
+    description:
+      'Tú. Todo el código, diseños, documentación y propiedad intelectual generada queda 100% a tu nombre. Recibes acceso completo a repositorios desde el día uno.',
+  },
+  {
+    title: '¿Ofrecen soporte y mantenimiento después del lanzamiento?',
+    description:
+      'Sí. Tenemos planes de mantenimiento evolutivo, soporte 24/7 para sistemas críticos y bolsas de horas mensuales para mejoras continuas. Tú eliges el nivel.',
+  },
+  {
+    title: '¿Pueden integrarse con mi equipo interno?',
+    description:
+      'Por supuesto. Trabajamos como extensión de tu equipo, asistimos a tus ceremonias ágiles, usamos tu stack de comunicación y nos adaptamos a tu proceso. Sin egos.',
+  },
+];
+
+const siteUrl = SITE?.site || '';
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.title,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.description,
+    },
+  })),
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Inicio',
+      item: siteUrl,
+    },
+  ],
 };
 ---
 
@@ -332,39 +397,11 @@ const metadata = {
     subtitle="Resolvemos las dudas más comunes antes de empezar un proyecto contigo."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
-    items={[
-      {
-        title: '¿Cuánto tiempo toma desarrollar un proyecto?',
-        description:
-          'Depende del alcance. Un MVP funcional toma entre 6 y 12 semanas. Plataformas más complejas pueden tomar de 3 a 9 meses. En la fase de descubrimiento definimos cronograma realista y entregables por sprint.',
-      },
-      {
-        title: '¿Trabajan con startups o solo con empresas grandes?',
-        description:
-          'Ambos. Tenemos planes y procesos pensados para startups en etapa temprana, pymes en crecimiento y áreas digitales de empresas consolidadas. Te acompañamos según el momento de tu negocio.',
-      },
-      {
-        title: '¿Cómo es el proceso de cotización?',
-        description:
-          'Conversación inicial gratuita para entender tu necesidad. Luego enviamos una propuesta con alcance, cronograma e inversión. Sin compromiso hasta que firmes la orden de trabajo.',
-      },
-      {
-        title: '¿Quién es dueño del código?',
-        description:
-          'Tú. Todo el código, diseños, documentación y propiedad intelectual generada queda 100% a tu nombre. Recibes acceso completo a repositorios desde el día uno.',
-      },
-      {
-        title: '¿Ofrecen soporte y mantenimiento después del lanzamiento?',
-        description:
-          'Sí. Tenemos planes de mantenimiento evolutivo, soporte 24/7 para sistemas críticos y bolsas de horas mensuales para mejoras continuas. Tú eliges el nivel.',
-      },
-      {
-        title: '¿Pueden integrarse con mi equipo interno?',
-        description:
-          'Por supuesto. Trabajamos como extensión de tu equipo, asistimos a tus ceremonias ágiles, usamos tu stack de comunicación y nos adaptamos a tu proceso. Sin egos.',
-      },
-    ]}
+    items={faqs}
   />
+
+  <StructuredData data={faqJsonLd} />
+  <StructuredData data={breadcrumbJsonLd} />
 
   <!-- Stats Widget ****************** -->
 
