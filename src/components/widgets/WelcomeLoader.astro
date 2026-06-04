@@ -3,37 +3,10 @@ const HIDE_AFTER_MS = 2400;
 const DESTROY_AFTER_MS = 3000;
 ---
 
-<script is:inline>
-  // Si la sesión ya vio el preloader (navegación interna), márcalo oculto
-  // ANTES de pintar: evita el flash del overlay oscuro en cada recarga.
-  (function () {
-    try {
-      if (sessionStorage.getItem('mj-preloader-shown') === '1') {
-        document.documentElement.classList.add('mj-preloader-skip');
-      }
-    } catch (e) {}
-  })();
-</script>
-
-<div
-  id="mj-preloader"
-  class="mj-preloader"
-  role="status"
-  aria-live="polite"
-  aria-label="Cargando MonkeyJobs"
-  data-hide-after={HIDE_AFTER_MS}
-  data-destroy-after={DESTROY_AFTER_MS}
->
-  <div class="mj-preloader__spinner" aria-hidden="true">
-    <div class="mj-preloader__bounce mj-preloader__bounce--one"></div>
-    <div class="mj-preloader__bounce mj-preloader__bounce--two"></div>
-    <div class="mj-preloader__bounce mj-preloader__bounce--three"></div>
-  </div>
-  <span class="mj-preloader__sr">Cargando…</span>
-</div>
-
-<style>
-  .mj-preloader {
+<!-- CSS crítico inline (NO scoped): se aplica antes de cualquier hoja async,
+     así el overlay tapa el FOUC del menú/contenido en dev y en producción. -->
+<style is:inline>
+  #mj-preloader {
     position: fixed;
     inset: 0;
     width: 100%;
@@ -42,55 +15,39 @@ const DESTROY_AFTER_MS = 3000;
     z-index: 99999;
     opacity: 1;
     visibility: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition:
       opacity 0.5s ease-out,
       visibility 0s 0.5s;
   }
-
-  .mj-preloader.is-hidden {
+  #mj-preloader.is-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
   }
-
-  /* Navegación interna (ya visto en la sesión): nace oculto, sin flash ni transición */
-  :global(html.mj-preloader-skip) .mj-preloader {
-    display: none;
-  }
-
-  .mj-preloader__spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  #mj-preloader .mj-pl-spinner {
     display: flex;
   }
-
-  .mj-preloader__bounce {
-    will-change: transform;
+  #mj-preloader .mj-pl-bounce {
     height: 45px;
     width: 45px;
     border-radius: 50%;
-    background: #03163b;
     display: inline-block;
-    animation: mj-preloader-bounces 1s ease-in-out infinite alternate;
+    animation: mj-pl-bounces 1s ease-in-out infinite alternate;
     transform-origin: 50% 50%;
   }
-
-  .mj-preloader__bounce--one {
-    margin-right: 15px;
-  }
-
-  .mj-preloader__bounce--two {
-    margin-right: 15px;
+  #mj-preloader .mj-pl-bounce--two {
     animation-delay: 0.4s;
   }
-
-  .mj-preloader__bounce--three {
+  #mj-preloader .mj-pl-bounce--three {
     animation-delay: 0.8s;
   }
-
-  .mj-preloader__sr {
+  #mj-preloader .mj-pl-bounce + .mj-pl-bounce {
+    margin-left: 15px;
+  }
+  #mj-preloader .mj-pl-sr {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -101,8 +58,7 @@ const DESTROY_AFTER_MS = 3000;
     white-space: nowrap;
     border: 0;
   }
-
-  @keyframes mj-preloader-bounces {
+  @keyframes mj-pl-bounces {
     0% {
       transform: scale(1);
       background: #e5eaf1;
@@ -115,31 +71,61 @@ const DESTROY_AFTER_MS = 3000;
       background: #e5eaf1;
     }
   }
-
   @media (prefers-reduced-motion: reduce) {
-    .mj-preloader__bounce {
+    #mj-preloader .mj-pl-bounce {
       animation-duration: 2s;
     }
   }
 </style>
 
-<script>
-  function hidePreloader(immediate = false) {
-    const loader = document.getElementById('mj-preloader');
+<div
+  id="mj-preloader"
+  role="status"
+  aria-live="polite"
+  aria-label="Cargando MonkeyJobs"
+  data-hide-after={HIDE_AFTER_MS}
+  data-destroy-after={DESTROY_AFTER_MS}
+>
+  <div class="mj-pl-spinner" aria-hidden="true">
+    <div class="mj-pl-bounce mj-pl-bounce--one"></div>
+    <div class="mj-pl-bounce mj-pl-bounce--two"></div>
+    <div class="mj-pl-bounce mj-pl-bounce--three"></div>
+  </div>
+  <span class="mj-pl-sr">Cargando…</span>
+</div>
+
+<script is:inline>
+  (function () {
+    var loader = document.getElementById('mj-preloader');
     if (!loader) return;
-    if (immediate || sessionStorage.getItem('mj-preloader-shown') === '1') {
+    var seen = false;
+    try {
+      seen = sessionStorage.getItem('mj-preloader-shown') === '1';
+    } catch (e) {}
+
+    function hide() {
       loader.classList.add('is-hidden');
+    }
+
+    if (seen) {
+      // Navegación interna: tapa el FOUC un instante corto y oculta al cargar.
+      if (document.readyState === 'complete') {
+        window.setTimeout(hide, 120);
+      } else {
+        window.addEventListener('load', function () {
+          window.setTimeout(hide, 120);
+        });
+      }
       return;
     }
-    const destroyAfter = Number(loader.dataset.destroyAfter ?? 2400);
-    window.setTimeout(() => {
-      loader.classList.add('is-hidden');
-      sessionStorage.setItem('mj-preloader-shown', '1');
+
+    // Primera carga de la sesión: muestra la animación completa.
+    var destroyAfter = Number(loader.dataset.destroyAfter || 2400);
+    window.setTimeout(function () {
+      hide();
+      try {
+        sessionStorage.setItem('mj-preloader-shown', '1');
+      } catch (e) {}
     }, destroyAfter);
-  }
-
-  hidePreloader();
-
-  document.addEventListener('astro:after-swap', () => hidePreloader(true));
-  document.addEventListener('astro:page-load', () => hidePreloader(true));
+  })();
 </script>
