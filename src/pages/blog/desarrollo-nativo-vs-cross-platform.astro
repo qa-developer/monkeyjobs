@@ -1,0 +1,145 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import Image from '~/components/common/Image.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { SITE } from 'astrowind:config';
+import { getArticleBySlug } from '~/data/articles';
+
+const article = getArticleBySlug('desarrollo-nativo-vs-cross-platform')!;
+const siteUrl = SITE?.site || '';
+const pageUrl = `${siteUrl}/blog/${article.slug}`;
+
+const metadata = {
+  title: article.title,
+  description: article.description,
+  openGraph: { type: 'article', images: [{ url: article.image.src, width: 1200, height: 630 }] },
+};
+
+const blogPostingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': `${pageUrl}/#article`,
+  headline: article.title,
+  description: article.description,
+  image: article.image.src,
+  datePublished: article.datePublished,
+  dateModified: article.dateModified || article.datePublished,
+  inLanguage: 'es-CO',
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+  keywords: article.tags.join(', '),
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+    { '@type': 'ListItem', position: 3, name: article.title, item: pageUrl },
+  ],
+};
+---
+
+<Layout metadata={metadata}>
+  <article class="mx-auto max-w-3xl px-4 sm:px-6 pt-8 pb-12 md:pt-12">
+    <nav class="text-sm text-muted mb-6" aria-label="Migas de pan">
+      <a href="/" class="hover:text-link">Inicio</a>
+      <span class="mx-1">/</span>
+      <a href="/blog" class="hover:text-link">Blog</a>
+    </nav>
+
+    <header class="mb-8">
+      <div class="flex flex-wrap gap-2 mb-4">
+        {article.tags.map((t) => (
+          <span class="text-xs font-medium uppercase tracking-wide text-secondary dark:text-blue-200">{t}</span>
+        ))}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tighter font-heading mb-4">{article.title}</h1>
+      <p class="text-lg text-muted">{article.excerpt}</p>
+      <p class="text-sm text-muted mt-4">
+        <time datetime={article.datePublished}>4 de junio de 2026</time> · {article.readingMinutes} min de lectura
+      </p>
+    </header>
+
+    <Image
+      src={article.image.src}
+      alt={article.image.alt}
+      width={1024}
+      height={576}
+      widths={[400, 768, 1024]}
+      sizes="(max-width: 767px) 400px, 1024px"
+      format="webp"
+      class="rounded-md w-full mb-10"
+    />
+
+    <div class="prose prose-lg dark:prose-invert max-w-none prose-headings:font-heading prose-headings:tracking-tight prose-a:text-link">
+      <p>
+        Es una de las primeras decisiones técnicas de cualquier proyecto móvil, y una de las más caras de revertir:
+        ¿construir <strong>nativo</strong> (Swift para iOS, Kotlin para Android) o <strong>cross-platform</strong>
+        (Flutter, React Native)? La respuesta correcta depende de tu producto, tu presupuesto y tu plazo — no de la
+        tecnología de moda.
+      </p>
+
+      <h2>Qué significa cada enfoque</h2>
+      <p>
+        <strong>Nativo</strong> es construir dos apps separadas, una por plataforma, con el lenguaje y las herramientas
+        oficiales de Apple y Google. <strong>Cross-platform</strong> es escribir una sola base de código que se compila
+        para iOS y Android usando un framework como Flutter o React Native.
+      </p>
+
+      <h2>Rendimiento y experiencia</h2>
+      <p>
+        El nativo ofrece el máximo rendimiento y acceso inmediato a cada nueva API del sistema operativo. Es la opción
+        cuando la app exige gráficos intensivos, cámara avanzada, realidad aumentada o gestos muy finos. Flutter y React
+        Native han cerrado mucho la brecha: para la gran mayoría de apps de negocio —marketplaces, fintech, logística,
+        productividad— la diferencia es imperceptible para el usuario.
+      </p>
+
+      <h2>Costo y time-to-market</h2>
+      <p>
+        Aquí cross-platform suele ganar: una sola base de código significa un equipo, un desarrollo y un mantenimiento
+        en lugar de dos. Para un MVP o un producto que necesita validar mercado rápido, esto puede reducir el costo y el
+        plazo de forma significativa. El nativo, al duplicar esfuerzo, es más caro de construir y de mantener — pero esa
+        inversión se justifica cuando la app <em>es</em> el producto y cada detalle de experiencia cuenta.
+      </p>
+
+      <h2>Mantenimiento a largo plazo</h2>
+      <ul>
+        <li><strong>Cross-platform:</strong> corriges una vez y aplica a ambas plataformas. Dependes de que el framework siga al día con iOS y Android.</li>
+        <li><strong>Nativo:</strong> más superficie que mantener, pero cero dependencia de capas intermedias y soporte inmediato de cada novedad del SO.</li>
+      </ul>
+
+      <h2>Cómo decidir en la práctica</h2>
+      <ol>
+        <li><strong>¿La app es tu producto o una extensión de tu servicio?</strong> Si es el producto central y la experiencia lo es todo, considera nativo.</li>
+        <li><strong>¿Necesitas validar rápido y con presupuesto acotado?</strong> Cross-platform acelera el MVP.</li>
+        <li><strong>¿Usas hardware avanzado o APIs muy nuevas?</strong> Nativo te da acceso sin esperar al framework.</li>
+        <li><strong>¿Tu equipo o presupuesto soporta mantener dos apps?</strong> Si no, una base compartida es más sostenible.</li>
+      </ol>
+
+      <h2>Nuestra recomendación honesta</h2>
+      <p>
+        Para la mayoría de las empresas que nos buscan, <strong>cross-platform con Flutter o React Native es el punto
+        dulce</strong>: calidad alta, un solo equipo y time-to-market real. Reservamos el nativo para productos donde el
+        rendimiento o la experiencia son la ventaja competitiva. Lo importante es decidir con criterio, no por inercia.
+      </p>
+      <p>
+        En MonkeyJobs trabajamos los dos mundos y partimos siempre de tu caso. Conoce más sobre nuestro
+        <a href="/services/apps-moviles">desarrollo de apps móviles</a> o cuéntanos tu idea para recomendarte el enfoque
+        correcto.
+      </p>
+    </div>
+  </article>
+
+  <CallToAction
+    actions={[{ variant: 'primary', text: 'Cuéntanos tu app', href: '/contact', icon: 'tabler:rocket' }]}
+    title="¿Tienes una app en mente?"
+    subtitle="Te ayudamos a elegir entre nativo y cross-platform según tu producto, tu plazo y tu presupuesto. Sin compromiso."
+  />
+
+  <StructuredData data={blogPostingJsonLd} />
+  <StructuredData data={breadcrumbJsonLd} />
+</Layout>

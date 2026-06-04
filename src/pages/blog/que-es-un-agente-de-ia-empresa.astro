@@ -1,0 +1,141 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import Image from '~/components/common/Image.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { SITE } from 'astrowind:config';
+import { getArticleBySlug } from '~/data/articles';
+
+const article = getArticleBySlug('que-es-un-agente-de-ia-empresa')!;
+const siteUrl = SITE?.site || '';
+const pageUrl = `${siteUrl}/blog/${article.slug}`;
+
+const metadata = {
+  title: article.title,
+  description: article.description,
+  openGraph: { type: 'article', images: [{ url: article.image.src, width: 1200, height: 630 }] },
+};
+
+const blogPostingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': `${pageUrl}/#article`,
+  headline: article.title,
+  description: article.description,
+  image: article.image.src,
+  datePublished: article.datePublished,
+  dateModified: article.dateModified || article.datePublished,
+  inLanguage: 'es-CO',
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+  keywords: article.tags.join(', '),
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+    { '@type': 'ListItem', position: 3, name: article.title, item: pageUrl },
+  ],
+};
+---
+
+<Layout metadata={metadata}>
+  <article class="mx-auto max-w-3xl px-4 sm:px-6 pt-8 pb-12 md:pt-12">
+    <nav class="text-sm text-muted mb-6" aria-label="Migas de pan">
+      <a href="/" class="hover:text-link">Inicio</a>
+      <span class="mx-1">/</span>
+      <a href="/blog" class="hover:text-link">Blog</a>
+    </nav>
+
+    <header class="mb-8">
+      <div class="flex flex-wrap gap-2 mb-4">
+        {article.tags.map((t) => (
+          <span class="text-xs font-medium uppercase tracking-wide text-secondary dark:text-blue-200">{t}</span>
+        ))}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tighter font-heading mb-4">{article.title}</h1>
+      <p class="text-lg text-muted">{article.excerpt}</p>
+      <p class="text-sm text-muted mt-4">
+        <time datetime={article.datePublished}>4 de junio de 2026</time> · {article.readingMinutes} min de lectura
+      </p>
+    </header>
+
+    <Image
+      src={article.image.src}
+      alt={article.image.alt}
+      width={1024}
+      height={576}
+      widths={[400, 768, 1024]}
+      sizes="(max-width: 767px) 400px, 1024px"
+      format="webp"
+      class="rounded-md w-full mb-10"
+    />
+
+    <div class="prose prose-lg dark:prose-invert max-w-none prose-headings:font-heading prose-headings:tracking-tight prose-a:text-link">
+      <p>
+        "Agente de IA" es probablemente el término más usado y peor entendido de la tecnología actual. No es un chatbot
+        más elocuente: es software que <strong>razona, decide y ejecuta tareas</strong> sobre tus sistemas, con un
+        objetivo y un mínimo de supervisión. Aquí te lo explicamos sin humo y con casos reales.
+      </p>
+
+      <h2>Chatbot vs. agente: la diferencia clave</h2>
+      <p>
+        Un <strong>chatbot</strong> responde: le preguntas y te contesta con texto. Un <strong>agente</strong> actúa:
+        recibe un objetivo, lo descompone en pasos, usa herramientas (tu CRM, tu base de datos, una API, el correo) y
+        ejecuta hasta lograrlo. El chatbot te dice cómo crear una factura; el agente la crea.
+      </p>
+
+      <h2>De qué se compone un agente</h2>
+      <ul>
+        <li><strong>Un modelo de lenguaje (LLM)</strong> que razona y planifica.</li>
+        <li><strong>Herramientas</strong> — funciones e integraciones con las que el agente actúa sobre el mundo real.</li>
+        <li><strong>Memoria y contexto</strong> — acceso a tu información (a menudo vía RAG) para responder con datos tuyos, no genéricos.</li>
+        <li><strong>Guardrails</strong> — límites, validaciones y trazabilidad para que actúe seguro y auditable.</li>
+      </ul>
+
+      <h2>Casos de uso reales en empresas</h2>
+      <ul>
+        <li><strong>Atención y ventas:</strong> un agente que responde, califica leads y agenda reuniones conectado a tu CRM.</li>
+        <li><strong>Operaciones:</strong> procesar facturas, conciliar pagos o actualizar inventarios disparando acciones en tus sistemas.</li>
+        <li><strong>Soporte interno:</strong> responder preguntas del equipo sobre políticas y documentación con RAG sobre tu base de conocimiento.</li>
+        <li><strong>Análisis:</strong> generar reportes consultando tus datos y resumiendo hallazgos accionables.</li>
+      </ul>
+
+      <h2>Lo que un agente NO es (todavía)</h2>
+      <p>
+        No es magia ni reemplaza el criterio humano en decisiones críticas. Sin guardrails puede equivocarse con
+        seguridad. La clave es acotar su alcance, validar sus acciones y medir resultados — empezar por un caso concreto
+        y medible, no por "ponle IA a todo".
+      </p>
+
+      <h2>Cómo empezar sin riesgos</h2>
+      <ol>
+        <li><strong>Elige un proceso repetitivo y bien definido</strong> con alto volumen y reglas claras.</li>
+        <li><strong>Mide el estado actual</strong> (tiempo, costo, errores) para comparar después.</li>
+        <li><strong>Empieza con humano en el loop</strong> — el agente propone, una persona aprueba — y reduce supervisión a medida que gana confianza.</li>
+        <li><strong>Cuida seguridad y costos</strong> desde el día uno: control de contexto, permisos y monitoreo de uso.</li>
+      </ol>
+
+      <h2>Cómo lo hacemos en MonkeyJobs</h2>
+      <p>
+        Integramos agentes y modelos generativos en flujos críticos con criterio de ingeniería: partimos de un caso de
+        uso medible, diseñamos guardrails y conectamos el agente a tus sistemas con trazabilidad. Conoce más sobre
+        nuestra <a href="/services/inteligencia-artificial">integración de inteligencia artificial y agentes</a> o
+        cuéntanos qué proceso quieres automatizar.
+      </p>
+    </div>
+  </article>
+
+  <CallToAction
+    actions={[{ variant: 'primary', text: 'Explora IA para tu empresa', href: '/contact', icon: 'tabler:rocket' }]}
+    title="¿Un proceso que podrías automatizar con IA?"
+    subtitle="Partimos de un caso de uso concreto y medible. Te decimos con honestidad si la IA aporta valor real en tu operación."
+  />
+
+  <StructuredData data={blogPostingJsonLd} />
+  <StructuredData data={breadcrumbJsonLd} />
+</Layout>
