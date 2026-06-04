@@ -77,9 +77,7 @@ const breadcrumbJsonLd = {
     actions={[{ variant: 'primary', text: 'Cotizar este servicio', href: '/contact', icon: 'tabler:rocket' }]}
     image={service.image}
   >
-    <Fragment slot="title">
-      <span set:html={service.heroTitleHtml} />
-    </Fragment>
+    <Fragment slot="title" set:html={service.heroTitleHtml} />
 
     <Fragment slot="bg">
       <div class="absolute inset-0 overflow-hidden">
