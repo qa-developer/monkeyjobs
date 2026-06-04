@@ -11,23 +11,23 @@ export const headerData = {
       links: [
         {
           text: 'Desarrollo web',
-          href: getPermalink('/services#web'),
+          href: getPermalink('/services/desarrollo-web'),
         },
         {
           text: 'Apps móviles',
-          href: getPermalink('/services#mobile'),
+          href: getPermalink('/services/apps-moviles'),
         },
         {
           text: 'Inteligencia Artificial',
-          href: getPermalink('/services#ai'),
+          href: getPermalink('/services/inteligencia-artificial'),
         },
         {
           text: 'Sistemas empresariales',
-          href: getPermalink('/services#systems'),
+          href: getPermalink('/services/sistemas-empresariales'),
         },
         {
           text: 'Consultoría y arquitectura',
-          href: getPermalink('/services#consulting'),
+          href: getPermalink('/services/consultoria-arquitectura'),
         },
         {
           text: 'Ver todos los servicios',
@@ -56,11 +56,11 @@ export const footerData = {
     {
       title: 'Servicios',
       links: [
-        { text: 'Desarrollo web', href: getPermalink('/services#web') },
-        { text: 'Apps móviles', href: getPermalink('/services#mobile') },
-        { text: 'Inteligencia Artificial', href: getPermalink('/services#ai') },
-        { text: 'Sistemas empresariales', href: getPermalink('/services#systems') },
-        { text: 'Consultoría', href: getPermalink('/services#consulting') },
+        { text: 'Desarrollo web', href: getPermalink('/services/desarrollo-web') },
+        { text: 'Apps móviles', href: getPermalink('/services/apps-moviles') },
+        { text: 'Inteligencia Artificial', href: getPermalink('/services/inteligencia-artificial') },
+        { text: 'Sistemas empresariales', href: getPermalink('/services/sistemas-empresariales') },
+        { text: 'Consultoría', href: getPermalink('/services/consultoria-arquitectura') },
       ],
     },
     {
