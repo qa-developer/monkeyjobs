@@ -1,0 +1,147 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import Image from '~/components/common/Image.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { SITE } from 'astrowind:config';
+import { getArticleBySlug } from '~/data/articles';
+
+const article = getArticleBySlug('software-a-la-medida-vs-enlatado')!;
+const siteUrl = SITE?.site || '';
+const pageUrl = `${siteUrl}/blog/${article.slug}`;
+
+const metadata = {
+  title: article.title,
+  description: article.description,
+  openGraph: {
+    type: 'article',
+    images: [{ url: article.image.src, width: 1200, height: 630 }],
+  },
+};
+
+const blogPostingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': `${pageUrl}/#article`,
+  headline: article.title,
+  description: article.description,
+  image: article.image.src,
+  datePublished: article.datePublished,
+  dateModified: article.dateModified || article.datePublished,
+  inLanguage: 'es-CO',
+  author: { '@id': `${siteUrl}/#organization` },
+  publisher: { '@id': `${siteUrl}/#organization` },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+  keywords: article.tags.join(', '),
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+    { '@type': 'ListItem', position: 3, name: article.title, item: pageUrl },
+  ],
+};
+---
+
+<Layout metadata={metadata}>
+  <article class="mx-auto max-w-3xl px-4 sm:px-6 pt-8 pb-12 md:pt-12">
+    <nav class="text-sm text-muted mb-6" aria-label="Migas de pan">
+      <a href="/" class="hover:text-link">Inicio</a>
+      <span class="mx-1">/</span>
+      <a href="/blog" class="hover:text-link">Blog</a>
+    </nav>
+
+    <header class="mb-8">
+      <div class="flex flex-wrap gap-2 mb-4">
+        {article.tags.map((t) => (
+          <span class="text-xs font-medium uppercase tracking-wide text-secondary dark:text-blue-200">{t}</span>
+        ))}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tighter font-heading mb-4">{article.title}</h1>
+      <p class="text-lg text-muted">{article.excerpt}</p>
+      <p class="text-sm text-muted mt-4">
+        <time datetime={article.datePublished}>4 de junio de 2026</time> · {article.readingMinutes} min de lectura
+      </p>
+    </header>
+
+    <Image
+      src={article.image.src}
+      alt={article.image.alt}
+      width={1024}
+      height={576}
+      widths={[400, 768, 1024]}
+      sizes="(max-width: 767px) 400px, 1024px"
+      format="webp"
+      class="rounded-md w-full mb-10"
+    />
+
+    <div class="prose prose-lg dark:prose-invert max-w-none prose-headings:font-heading prose-headings:tracking-tight prose-a:text-link">
+      <p>
+        Toda empresa que crece llega al mismo cruce de caminos: <strong>comprar una solución lista (enlatada)</strong> o
+        <strong>construir software a la medida</strong>. No hay una respuesta universal — hay una respuesta correcta
+        <em>para tu operación</em>. Esta guía te da los criterios para decidir con cabeza, no por moda.
+      </p>
+
+      <h2>Qué es cada opción</h2>
+      <p>
+        Una <strong>solución enlatada</strong> (off-the-shelf o SaaS) es un producto ya construido que usas mediante una
+        suscripción: un CRM popular, un e-commerce de plantilla, un ERP genérico. El <strong>software a la medida</strong>
+        se diseña y construye específicamente para tus procesos, tus reglas de negocio y tus integraciones.
+      </p>
+
+      <h2>Cuándo conviene una solución enlatada</h2>
+      <ul>
+        <li><strong>Tu proceso es estándar.</strong> Si haces lo mismo que miles de empresas (facturación básica, correo, agenda), un producto maduro ya lo resuelve mejor y más barato.</li>
+        <li><strong>Necesitas arrancar ya.</strong> Configurar un SaaS toma días; construir toma semanas o meses.</li>
+        <li><strong>El presupuesto inicial es limitado.</strong> Pagas una suscripción mensual en lugar de una inversión de desarrollo.</li>
+      </ul>
+      <p>
+        El costo oculto aparece después: licencias por usuario que escalan, funciones que <em>casi</em> hacen lo que
+        necesitas, y la imposibilidad de cambiar el comportamiento del producto cuando tu negocio se diferencia.
+      </p>
+
+      <h2>Cuándo conviene software a la medida</h2>
+      <ul>
+        <li><strong>Tu proceso es tu ventaja competitiva.</strong> Si lo que te hace distinto vive en cómo operas, forzarlo dentro de un producto genérico borra esa ventaja.</li>
+        <li><strong>Necesitas integrar varios sistemas.</strong> Cuando tu operación depende de que ERP, CRM, pasarela de pagos y logística conversen, el middleware a la medida elimina el trabajo manual frágil.</li>
+        <li><strong>El costo por usuario del SaaS ya duele.</strong> A cierta escala, una licencia mensual por cada empleado supera el costo de tener tu propia plataforma.</li>
+        <li><strong>Quieres ser dueño del activo.</strong> El software a la medida es tuyo: código, datos y propiedad intelectual, sin depender de la hoja de ruta de un tercero.</li>
+      </ul>
+
+      <h2>Los cuatro criterios para decidir</h2>
+      <ol>
+        <li><strong>Diferenciación:</strong> ¿este proceso te distingue o es de soporte? Lo que te diferencia, constrúyelo; lo genérico, cómpralo.</li>
+        <li><strong>Escala:</strong> proyecta el costo de licencias a 2–3 años contra una inversión de desarrollo única más mantenimiento.</li>
+        <li><strong>Integración:</strong> cuenta cuántos sistemas deben hablar entre sí. A más integraciones, más sentido tiene lo a la medida.</li>
+        <li><strong>Time-to-market:</strong> si necesitas algo funcionando esta semana, empieza con un enlatado y migra cuando el dolor lo justifique.</li>
+      </ol>
+
+      <h2>El punto medio que casi nadie menciona</h2>
+      <p>
+        No siempre es todo o nada. Una arquitectura sana suele <strong>comprar lo genérico y construir lo diferencial</strong>:
+        usas un SaaS de correo o contabilidad, y desarrollas a la medida el núcleo que mueve tu negocio, conectándolo todo
+        mediante APIs. Así no reinventas la rueda donde no aporta, y sí controlas lo que te hace competitivo.
+      </p>
+
+      <h2>Cómo lo abordamos en MonkeyJobs</h2>
+      <p>
+        Antes de proponer una línea de código, hacemos una fase de descubrimiento: entendemos tu operación, qué te
+        diferencia y qué restricciones tienes. A partir de ahí recomendamos construir, comprar o combinar — con un
+        roadmap claro y costos predecibles. Si construir es el camino, lo hacemos con arquitectura escalable, calidad
+        como contrato y entregas en sprints, para que veas avances reales cada dos semanas.
+      </p>
+    </div>
+  </article>
+
+  <CallToAction
+    actions={[{ variant: 'primary', text: 'Conversemos tu caso', href: '/contact', icon: 'tabler:rocket' }]}
+    title="¿No sabes cuál es tu mejor camino?"
+    subtitle="Te ayudamos a decidir sin compromiso: construir, comprar o combinar. Claridad técnica y de negocio en una primera conversación."
+  />
+
+  <StructuredData data={blogPostingJsonLd} />
+  <StructuredData data={breadcrumbJsonLd} />
+</Layout>

@@ -10,6 +10,7 @@ Todo esto ya está en el código y se verifica en cada `npm run build`:
 
 - **Metadata único por página** — title keyword-rich + meta description propia en index, services, about, pricing, contact. 404 con `noindex, follow`.
 - **Páginas individuales de servicio** (`src/pages/services/[slug].astro`, datos en `src/data/services.ts`): desarrollo-web, apps-moviles, inteligencia-artificial, sistemas-empresariales, consultoria-arquitectura. Cada una con title/description propios, contenido de capacidades + FAQ, y su propio `Service` + `OfferCatalog` + `FAQPage` + `BreadcrumbList`. Duplican la superficie indexable y capturan keywords comerciales específicas. El menú y el footer enlazan a estas páginas (antes apuntaban a anclas inexistentes `/services#...`).
+- **Blog / Insights** (`src/pages/blog/`, índice en `src/data/articles.ts`): sistema ligero con artículo pilar de ejemplo, schema `Blog` + `BlogPosting`, enlazado desde el footer. Base para autoridad temática (ver §4).
 - **Datos estructurados JSON-LD** (`src/components/common/SiteJsonLd.astro` + por página):
   - `Organization` + `SoftwareCompany` con `knowsAbout` (~50 competencias), `foundingDate`, `numberOfEmployees`, `priceRange`, `currenciesAccepted`, `paymentAccepted`, `contactPoint`, `sameAs`, `geo`.
   - `LocalBusiness` + `ProfessionalService` con dirección Bogotá, `geo`, `openingHoursSpecification`, `areaServed`.
@@ -62,7 +63,7 @@ Esto es lo que mueve el "reconocimiento en todo internet" y ocurre fuera del rep
 - [ ] **Menciones / PR**: notas en medios tech locales, podcasts, comunidades (Angular, IA).
 
 ### Contenido (continuo)
-- [ ] **Blog técnico** — el sistema de blog se removió pero es recuperable. Contenido fresco y útil es el motor de tráfico orgánico de largo plazo. Cada artículo = nueva URL indexable apuntando a long-tail keywords.
+- [~] **Blog / Insights** — sembrado: sistema ligero en `src/data/articles.ts` + `src/pages/blog/` con un artículo pilar de ejemplo y schema `Blog`/`BlogPosting`. **Acción del equipo:** revisar/aprobar el artículo semilla y publicar con cadencia (1–2/mes). Cada artículo = nueva URL indexable y señal de autoridad temática. Agregar artículos = nueva entrada en `articles.ts` + su `.astro` en `src/pages/blog/`.
 - [x] **Páginas por servicio** — hecho: `/services/desarrollo-web`, `/services/apps-moviles`, `/services/inteligencia-artificial`, `/services/sistemas-empresariales`, `/services/consultoria-arquitectura`. Ampliar con más servicios (e-commerce, backend/APIs, DevOps, staff augmentation) editando `src/data/services.ts`.
 
 ---

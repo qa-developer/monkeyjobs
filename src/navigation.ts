@@ -74,9 +74,9 @@ export const footerData = {
     {
       title: 'Recursos',
       links: [
-        { text: 'Casos de éxito', href: '#' },
-        { text: 'Procesos', href: '#' },
-        { text: 'Stack tecnológico', href: '#' },
+        { text: 'Blog', href: getPermalink('/blog') },
+        { text: 'Servicios', href: getPermalink('/services') },
+        { text: 'Planes y precios', href: getPermalink('/pricing') },
         { text: 'Preguntas frecuentes', href: getPermalink('/#faqs') },
       ],
     },
