@@ -1,5 +1,5 @@
 # MonkeyJobs — robots.txt
-# https://monkeyjobs.co
+# https://www.monkeyjobs.co
 
 User-agent: *
 Allow: /
@@ -38,4 +38,4 @@ Disallow:
 User-agent: ClaudeBot
 Disallow:
 
-Sitemap: https://monkeyjobs.co/sitemap-index.xml
+Sitemap: https://www.monkeyjobs.co/sitemap-index.xml

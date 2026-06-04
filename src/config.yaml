@@ -1,6 +1,6 @@
 site:
   name: MonkeyJobs
-  site: 'https://monkeyjobs.co'
+  site: 'https://www.monkeyjobs.co'
   base: '/'
   trailingSlash: false
 
