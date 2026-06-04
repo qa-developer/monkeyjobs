@@ -40,6 +40,10 @@ export const headerData = {
       href: getPermalink('/about'),
     },
     {
+      text: 'Casos de éxito',
+      href: getPermalink('/casos-de-exito'),
+    },
+    {
       text: 'Planes',
       href: getPermalink('/pricing'),
     },
@@ -67,6 +71,7 @@ export const footerData = {
       title: 'Empresa',
       links: [
         { text: 'Sobre nosotros', href: getPermalink('/about') },
+        { text: 'Casos de éxito', href: getPermalink('/casos-de-exito') },
         { text: 'Planes y precios', href: getPermalink('/pricing') },
         { text: 'Contacto', href: getPermalink('/contact') },
       ],
