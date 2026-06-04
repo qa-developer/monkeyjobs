@@ -1,17 +1,41 @@
+# MonkeyJobs — robots.txt
+# https://monkeyjobs.co
+
 User-agent: *
 Allow: /
 
-# Bots agresivos / sin valor SEO
+# Permitir explícitamente imágenes y assets (Google Images + rich results)
+Allow: /_astro/
+Allow: /assets/
+Allow: /favicon.svg
+Allow: /favicon.ico
+Allow: /apple-touch-icon.png
+Allow: /og-monkeyjobs.png
+
+# Bots agresivos / scrapers SEO — throttle
 User-agent: AhrefsBot
 Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 10
 
+User-agent: Bingbot
+Crawl-delay: 5
+
+User-agent: Yandex
+Crawl-delay: 5
+
+# Opt-out LLM training crawlers
 User-agent: GPTBot
 Disallow:
 
 User-agent: CCBot
+Disallow:
+
+User-agent: anthropic-ai
+Disallow:
+
+User-agent: ClaudeBot
 Disallow:
 
 Sitemap: https://monkeyjobs.co/sitemap-index.xml

@@ -1,0 +1,26 @@
+{
+  "name": "MonkeyJobs — Casa de Desarrollo de Software",
+  "short_name": "MonkeyJobs",
+  "description": "Casa de desarrollo de software en Bogotá. Web, apps móviles, IA y sistemas empresariales a la medida.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#03163b",
+  "theme_color": "#03163b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "productivity", "developer"],
+  "lang": "es-CO"
+}
