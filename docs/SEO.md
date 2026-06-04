@@ -63,7 +63,7 @@ Esto es lo que mueve el "reconocimiento en todo internet" y ocurre fuera del rep
 - [ ] **Menciones / PR**: notas en medios tech locales, podcasts, comunidades (Angular, IA).
 
 ### Contenido (continuo)
-- [~] **Blog / Insights** — sembrado: sistema ligero en `src/data/articles.ts` + `src/pages/blog/` con un artículo pilar de ejemplo y schema `Blog`/`BlogPosting`. **Acción del equipo:** revisar/aprobar el artículo semilla y publicar con cadencia (1–2/mes). Cada artículo = nueva URL indexable y señal de autoridad temática. Agregar artículos = nueva entrada en `articles.ts` + su `.astro` en `src/pages/blog/`.
+- [~] **Blog / Insights** — sembrado con **3 artículos pilar** (`src/data/articles.ts` + `src/pages/blog/`) cubriendo tres clusters: estrategia (a la medida vs. enlatado), móvil (nativo vs. cross-platform) y IA (qué es un agente). Cada uno enlaza a su página de servicio. Schema `Blog`/`BlogPosting`. **Acción del equipo:** revisar/aprobar y mantener cadencia (1–2/mes). Agregar artículos = nueva entrada en `articles.ts` + su `.astro` en `src/pages/blog/`.
 - [x] **Páginas por servicio** — hecho: `/services/desarrollo-web`, `/services/apps-moviles`, `/services/inteligencia-artificial`, `/services/sistemas-empresariales`, `/services/consultoria-arquitectura`. Ampliar con más servicios (e-commerce, backend/APIs, DevOps, staff augmentation) editando `src/data/services.ts`.
 
 ---
