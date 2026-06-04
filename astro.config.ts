@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
+import { EnumChangefreq } from 'sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
@@ -25,7 +26,31 @@ export default defineConfig({
   output: 'static',
 
   integrations: [
-    sitemap(),
+    sitemap({
+      // Excluir 404 (marcado noindex) del sitemap
+      filter: (page) => !page.includes('/404'),
+      changefreq: EnumChangefreq.MONTHLY,
+      priority: 0.7,
+      lastmod: new Date(),
+      // Prioridades por importancia de negocio
+      serialize(item) {
+        const url = item.url.replace(/\/$/, '');
+        if (url.endsWith('monkeyjobs.co') || url.endsWith('/')) {
+          item.priority = 1.0;
+          item.changefreq = EnumChangefreq.WEEKLY;
+        } else if (url.endsWith('/services')) {
+          item.priority = 0.9;
+        } else if (url.endsWith('/about') || url.endsWith('/pricing')) {
+          item.priority = 0.8;
+        } else if (url.endsWith('/contact')) {
+          item.priority = 0.7;
+        } else if (url.endsWith('/privacy') || url.endsWith('/terms')) {
+          item.priority = 0.3;
+          item.changefreq = EnumChangefreq.YEARLY;
+        }
+        return item;
+      },
+    }),
     mdx(),
     icon({
       include: {

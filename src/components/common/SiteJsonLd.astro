@@ -1,10 +1,20 @@
 ---
-import { SITE } from 'astrowind:config';
+import { SITE, METADATA } from 'astrowind:config';
 import StructuredData from '~/components/common/StructuredData.astro';
 import logoImage from '~/assets/images/logo_monkeyjobs.png';
 
+export interface Props {
+  pageTitle?: string;
+  pageDescription?: string;
+}
+
+const { pageTitle, pageDescription } = Astro.props;
+
 const siteUrl = SITE?.site || '';
 const logoUrl = new URL(logoImage.src, siteUrl).toString();
+
+const currentUrl = new URL(Astro.url.pathname, siteUrl).toString().replace(/\/$/, '') || siteUrl;
+const ogImageUrl = new URL('/og-monkeyjobs.png', siteUrl).toString();
 
 const organization = {
   '@context': 'https://schema.org',
@@ -186,8 +196,22 @@ const website = {
   publisher: { '@id': `${siteUrl}/#organization` },
   inLanguage: 'es-CO',
 };
+
+const webPage = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${currentUrl}/#webpage`,
+  url: currentUrl,
+  name: pageTitle || METADATA?.title?.default || 'MonkeyJobs',
+  description: pageDescription || METADATA?.description,
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  about: { '@id': `${siteUrl}/#organization` },
+  primaryImageOfPage: ogImageUrl,
+  inLanguage: 'es-CO',
+};
 ---
 
 <StructuredData data={organization} />
 <StructuredData data={localBusiness} />
 <StructuredData data={website} />
+<StructuredData data={webPage} />

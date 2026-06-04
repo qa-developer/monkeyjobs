@@ -36,7 +36,7 @@ const { language, textDirection } = I18N;
     <ApplyColorMode />
     <Metadata {...metadata} />
     <SiteVerification />
-    <SiteJsonLd />
+    <SiteJsonLd pageTitle={metadata?.title} pageDescription={metadata?.description} />
     <Analytics />
 
     <!-- Comment the line below to disable View Transitions -->
